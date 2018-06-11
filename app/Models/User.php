@@ -2,7 +2,7 @@
 
 // use Illuminate\Foundation\Auth\User as Authenticatable;
 
-namespace App;
+namespace App\Models;
 
 use Bican\Roles\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
 use Bican\Roles\Traits\HasRoleAndPermission;
@@ -12,9 +12,11 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract, HasRoleAndPermissionContract
-{
-    use Authenticatable, CanResetPassword, HasRoleAndPermission;
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract, HasRoleAndPermissionContract {
+
+    use Authenticatable,
+        CanResetPassword,
+        HasRoleAndPermission;
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +33,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'oauth_provider_id', 'oauth_provider',
+        'password', 'remember_token', 'oauth_provider_id', 'oauth_provider','email_verification_code',
     ];
+
+    /*
+    Get roles of current user
+    */
+    public function role(){
+
+    }
+    /*
+    Get permission of current user
+    */
+    public function permissions(){
+
+    }
 }

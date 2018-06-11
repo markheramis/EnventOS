@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use Auth;
 use Bican\Roles\Models\Permission;
 use Bican\Roles\Models\Role;
@@ -79,7 +79,6 @@ class UserController extends Controller
         }
 
         $user->save();
-
         return response()->success('success');
     }
 
@@ -161,8 +160,8 @@ class UserController extends Controller
      */
     public function deleteUser($id)
     {
-        // $user = User::find($id);
-        // $user->delete();
+        $user = User::find($id);
+        $user->delete();
         return response()->success('success');
     }
 
