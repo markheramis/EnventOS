@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PasswordReset extends Model
-{
+class PasswordReset extends Model {
+
     protected $fillable = ['email', 'token'];
 
-    public function setUpdatedAtAttribute($value)
-    {
+    public function setUpdatedAtAttribute($value) {
         // to disable updated_at
     }
+
 }
