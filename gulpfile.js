@@ -5,11 +5,11 @@ require('laravel-elixir-karma')
 require('./tasks/angular.task.js')
 require('./tasks/bower.task.js')
 require('./tasks/ngHtml2Js.task.js')
+require('laravel-elixir-artisan-serve')
 
 if (!elixir.config.production) {
   require('./tasks/phpcs.task.js')
 }
-
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -58,13 +58,19 @@ elixir(function (mix) {
     .sass('./angular/**/*.scss', 'public/css')
     .styles(styles, './public/css/final.css')
     .version(assets)
+    .artisanServe({
+        php_path: config.phpPath, // in windows, you need to add php to environment path.
+        artisan_path: './artisan',
+        host: '127.0.0.1',
+        port: 8000,
+        show_requests: true
+    })
     .browserSync({
       proxy: 'localhost:8000'
     })
     .karma({
       jsDir: karmaJsDir
     })
-
   mix
     .copy(fontsOutputFolder, buildPath + '/fonts')
 })

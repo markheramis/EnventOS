@@ -12,5 +12,6 @@
     "fonts": {
         "outputFolder": "public/fonts"
     },
-    "buildPath": "public/build"
+    "buildPath": "public/build",
+    "phpPath": "C:/xampp/php/php.exe"
 }
