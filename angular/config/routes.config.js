@@ -20,15 +20,46 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         },
         'header@app': {
           templateUrl: getView('header')
+    .state('app.sales-create',{
+        url: '/sales/create',
+        data: {auth: true},
+        views: {
+            'main@app':{
+                template:'<sales-create></sales-create>'
+            }
         },
         'footer@app': {
           templateUrl: getView('footer')
+        params: {
+            alerts: null
+        }
+    })
+    .state('app.sales-list',{
+        url: '/sales/list',
+        data: {auth: true},
+        views: {
+            'main@app':{
+                template: '<sales-list></sales-list>'
+            }
+        }
+    })
+    .state('app.sales-edit',{
+        url: '/sales/edit/:salesId',
+        data: {auth: true},
+        views: {
+            'main@app':{
+                template: '<sales-edit></sales-edit>'
+            }
         },
         main: {}
       },
       data: {
         bodyClass: 'hold-transition skin-blue sidebar-mini'
       }
+        params:{
+            alerts: null,
+            salesId: null
+        }
     })
     .state('app.landing', {
       url: '/',
