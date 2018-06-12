@@ -1,4 +1,12 @@
 import { UserProfileComponent } from './app/components/user-profile/user-profile.component'
+// Item Kits
+import {ItemKitsEditComponent} from './app/components/item-kits-edit/item-kits-edit.component';
+import {ItemKitsAddComponent} from './app/components/item-kits-add/item-kits-add.component';
+import {ItemKitsListComponent} from './app/components/item-kits-list/item-kits-list.component';
+// Items
+import {ItemEditComponent} from './app/components/item-edit/item-edit.component';
+import {ItemAddComponent} from './app/components/item-add/item-add.component';
+import {ItemListComponent} from './app/components/item-list/item-list.component';
 // Supplier
 import {SupplierEditComponent} from './app/components/supplier-edit/supplier-edit.component';
 import {SupplierAddComponent} from './app/components/supplier-add/supplier-add.component';
@@ -44,6 +52,14 @@ angular.module('app.components')
   .component('forgotPassword', ForgotPasswordComponent)
   .component('loginForm', LoginFormComponent)
   .component('registerForm', RegisterFormComponent)
+// Item Kits
+.component('itemKitsEdit', ItemKitsEditComponent)
+.component('itemKitsAdd', ItemKitsAddComponent)
+.component('itemKitsList', ItemKitsListComponent)
+// Items
+.component('itemEdit', ItemEditComponent)
+.component('itemAdd', ItemAddComponent)
+.component('itemList', ItemListComponent)
 // Supplier
 .component('supplierEdit', SupplierEditComponent)
 .component('supplierAdd', SupplierAddComponent)

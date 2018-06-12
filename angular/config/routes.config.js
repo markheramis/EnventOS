@@ -55,6 +55,14 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
       params: {
         alerts: null
       }
+    .state('app.item-kits-list',{
+        url: '/item/kits/list',
+        data: {auth: true},
+        views: {
+            'main@app':{
+                template: '<item-kits-list></item-kits-list>'
+            }
+        }
     })
     .state('app.userlist', {
       url: '/user-lists',
@@ -64,8 +72,64 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
       views: {
         'main@app': {
           template: '<user-lists></user-lists>'
+    .state('app.item-kits-add',{
+        url: '/item/kits/add',
+        data: {auth: true},
+        views: {
+            'main@app': {
+                template: '<item-kits-add></item-kits-add>'
+            }
+        },
+        params:{
+            alerts: null
         }
-      }
+    })
+    .state('app.item-kits-edit',{
+        url: '/item/kits/:itemId',
+        data: {auth:true},
+        views:{
+            'main@app':{
+                template: '<item-kits-edit></item-kits-edit>'
+            }
+        },
+        params:{
+            alerts: null,
+            itemId: null
+        }
+    })
+    .state('app.item-list',{
+        url: '/item/list',
+        data: {auth: true},
+        views: {
+            'main@app':{
+                template: '<item-list></item-list>'
+            }
+        }
+    })
+    .state('app.item-add',{
+        url: '/item/add',
+        data: {auth:  true},
+        views: {
+            'main@app': {
+                template: '<item-add></item-add>'
+            }
+        },
+        params: {
+            alerts: null
+        }
+    })
+    .state('app.item-edit',{
+        url: '/item/edit/:itemId',
+        data: {auth: true},
+        views: {
+            'main@app':{
+                template: '<item-edit></item-edit>'
+            }
+        },
+        params: {
+            alerts: null,
+            itemId: null
+        }
     })
     .state('app.useredit', {
       url: '/user-edit/:userId',
