@@ -69,8 +69,17 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
       views: {
         'main@app': {
           templateUrl: getView('landing')
+    .state('app.sales',{
+        url: '/transactions/sales',
+        data: {auth: true},
+        views: {
+            'main@app':{
+                template: '<sales></sales>'
+            }
+        },
+        params: {
+            alerts: null
         }
-      }
     })
     })
     .state('app.profile', {
