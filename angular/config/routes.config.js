@@ -81,6 +81,39 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         alerts: null,
         userId: null
       }
+    .state('app.supplier-list',{
+        url: '/supplier/list',
+        data: {auth: true},
+        views: {
+            'main@app':{
+              template: '<supplier-list></supplier-list>'
+            }
+        }
+    })
+    .state('app.supplier-add',{
+        url: '/supplier/add',
+        data: {auth: true},
+        views: {
+            'main@app':{
+                template:'<supplier-add></supplier-add>'
+            }
+        },
+        params:{
+            alerts: null
+        }
+    })
+    .state('app.supplier-edit',{
+        url: '/supplier/edit/:supplierId',
+        data: {auth: true},
+        views: {
+            'main@app':{
+                template:'<supplier-edit></supplier-edit>'
+            }
+        },
+        params:{
+            alerts: null,
+            supplierId: null
+        }
     })
     .state('app.userroles', {
       url: '/user-roles',

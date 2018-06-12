@@ -1,4 +1,8 @@
 import { UserProfileComponent } from './app/components/user-profile/user-profile.component'
+// Supplier
+import {SupplierEditComponent} from './app/components/supplier-edit/supplier-edit.component';
+import {SupplierAddComponent} from './app/components/supplier-add/supplier-add.component';
+import {SupplierListComponent} from './app/components/supplier-list/supplier-list.component';
 // Customer
 import {CustomerEditComponent} from './app/components/customer-edit/customer-edit.component';
 import {CustomerAddComponent} from './app/components/customer-add/customer-add.component';
@@ -40,6 +44,10 @@ angular.module('app.components')
   .component('forgotPassword', ForgotPasswordComponent)
   .component('loginForm', LoginFormComponent)
   .component('registerForm', RegisterFormComponent)
+// Supplier
+.component('supplierEdit', SupplierEditComponent)
+.component('supplierAdd', SupplierAddComponent)
+.component('supplierList', SupplierListComponent)
 // Customer
 .component('customerEdit', CustomerEditComponent)
 .component('customerAdd', CustomerAddComponent)
