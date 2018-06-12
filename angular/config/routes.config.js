@@ -39,6 +39,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             }
         }
     })
+
     .state('app.sales-create',{
         url: '/sales/create',
         data: {auth: true},
@@ -73,29 +74,6 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             salesId: null
         }
     })
-    /*
-    .state('app.sales',{
-        url: '/transactions/sales',
-        data: {auth: true},
-        views: {
-            'main@app':{
-                template: '<sales></sales>'
-            }
-        },
-        params: {
-            alerts: null
-        }
-    })
-    .state('app.receivings',{
-        url: '/transactions/receivings',
-        data: {auth: true},
-        views: {
-            'main@app':{
-                template: '<receivings></receivings>'
-            }
-        }
-    })
-    */
     .state('app.item-kits-list',{
         url: '/item/kits/list',
         data: {auth: true},
