@@ -1,4 +1,8 @@
 import { UserProfileComponent } from './app/components/user-profile/user-profile.component'
+// Sales
+import {SalesCreateComponent} from './app/components/sales-create/sales-create.component';
+import {SalesEditComponent} from './app/components/sales-edit/sales-edit.component';
+import {SalesListComponent} from './app/components/sales-list/sales-list.component';
 // Item Kits
 import {ItemKitsEditComponent} from './app/components/item-kits-edit/item-kits-edit.component';
 import {ItemKitsAddComponent} from './app/components/item-kits-add/item-kits-add.component';
@@ -52,6 +56,9 @@ angular.module('app.components')
   .component('forgotPassword', ForgotPasswordComponent)
   .component('loginForm', LoginFormComponent)
   .component('registerForm', RegisterFormComponent)
+.component('salesCreate', SalesCreateComponent)
+.component('salesEdit', SalesEditComponent)
+.component('salesList', SalesListComponent)
 // Item Kits
 .component('itemKitsEdit', ItemKitsEditComponent)
 .component('itemKitsAdd', ItemKitsAddComponent)
