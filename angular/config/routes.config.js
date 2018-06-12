@@ -90,8 +90,39 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
       views: {
         'main@app': {
           template: '<user-roles></user-roles>'
+    .state('app.customer-list',{
+        url: '/customer/list',
+        data: {auth: true},
+        views: {
+            'main@app':{
+                template: '<customer-list></customer-list>'
+            }
         }
-      }
+    })
+    .state('app.customer-add',{
+        url: '/customer/add',
+        data: {auth: true},
+        views: {
+            'main@app':{
+                template: '<customer-add></customer-add>'
+            }
+        },
+        params:{
+            alerts: null
+        }
+    })
+    .state('app.customer-edit',{
+        url: '/customer/edit/:customerId',
+        data: {auth: true},
+        views: {
+            'main@app':{
+                template: '<customer-edit></customer-edit>'
+            }
+        },
+        params:{
+            alerts: null,
+            customerId: null
+        }
     })
     .state('app.userpermissions', {
       url: '/user-permissions',

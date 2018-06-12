@@ -1,4 +1,8 @@
 import { UserProfileComponent } from './app/components/user-profile/user-profile.component'
+// Customer
+import {CustomerEditComponent} from './app/components/customer-edit/customer-edit.component';
+import {CustomerAddComponent} from './app/components/customer-add/customer-add.component';
+import {CustomerListComponent} from './app/components/customer-list/customer-list.component';
 import { UserVerificationComponent } from './app/components/user-verification/user-verification.component'
 import { UserEditComponent } from './app/components/user-edit/user-edit.component'
 import { UserPermissionsEditComponent } from './app/components/user-permissions-edit/user-permissions-edit.component'
@@ -36,3 +40,7 @@ angular.module('app.components')
   .component('forgotPassword', ForgotPasswordComponent)
   .component('loginForm', LoginFormComponent)
   .component('registerForm', RegisterFormComponent)
+// Customer
+.component('customerEdit', CustomerEditComponent)
+.component('customerAdd', CustomerAddComponent)
+.component('customerList', CustomerListComponent)

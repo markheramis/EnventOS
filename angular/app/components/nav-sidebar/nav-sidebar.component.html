@@ -31,6 +31,23 @@
         </a>
         <ul class="treeview-menu">
           <li ng-show="vm.can('manage.users')" class="active"><a ui-sref='app.userlist'><i class="fa fa-circle-o"></i> <span>User List</span></a></li>
+            <li class="treeview">
+                <a href="javascript:void(0)">
+                    <i class="fa fa-users"></i> <span>Customers</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a ui-sref="app.customer-list">
+                            <i class="fa fa-circle-o"></i> <span>All Customers</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="app.customer-add">
+                            <i class="fa fa-circle-o"></i> <span>Add Customer</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
       </li>
       <li class="treeview" ng-show="vm.can('manage.roles') || vm.can('manage.permissions')">
