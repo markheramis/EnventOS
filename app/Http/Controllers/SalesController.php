@@ -65,7 +65,21 @@ class SalesController extends Controller{
             $sales->payment_type = $data['payment_type'];
             if($sales->save())
             {
+
+
+                # return all items
+                foreach($sales->items as $item){
+                    $inventory = new Inventory;
+                    $inventory->item_id = $item->item_id;
+                    $inventory->user_id = Auth::user()->id;
+                    $inventory->in_out_qty = $item->quantity;
+                    $inventory->remarks = 'Item returned due to transaction edit on sales (#' . $sales->id . ')';
+                    $inventory->sales_id = $sales->id;
+                    $inventory->save();
+                }
+
                 SaleItems::where('sale_id',$sales->id)->delete();
+
                 foreach($data['items'] as $item){
                     $saleItem = new saleItems;
                     $saleItem->sale_id = $sales->id;
@@ -77,23 +91,11 @@ class SalesController extends Controller{
                     $saleItem->total_selling = $item['total_selling_price'];
                     $saleItem->save();
 
-                    # get in_out_qty from previous transaction
-                    $in_out_qty = Inventory::where(['sales_id'=> $sales->id, 'item_id' => $item['id']])->first()->in_out_qty;
-
-                    # make a return inventory transcation
-                    $inventory = new Inventory;
-                    $inventory->item_id = $item['id'];
-                    $inventory->user_id = Auth::user()->id;
-                    $inventory->in_out_qty = ($in_out_qty * -1);
-                    $inventory->remarks = 'Items returned due to transaction edit';
-                    $inventory->sales_id = $sales->id;
-                    $inventory->save();
-
                     # make the new inventory transaction.
                     $inventory = new Inventory;
                     $inventory->item_id = $item['id'];
                     $inventory->user_id = Auth::user()->id;
-                    $inventory->in_out_qty = (0 - $item['quantity']);
+                    $inventory->in_out_qty = ($item['quantity'] * -1);
                     $inventory->remarks = 'Deducted from sale transaction';
                     $inventory->sales_id = $sales->id;
                     $inventory->save();
