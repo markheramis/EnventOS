@@ -20,6 +20,8 @@ import {CustomerEditComponent} from './app/components/customer-edit/customer-edi
 import {CustomerAddComponent} from './app/components/customer-add/customer-add.component';
 import {CustomerListComponent} from './app/components/customer-list/customer-list.component';
 import { UserVerificationComponent } from './app/components/user-verification/user-verification.component'
+// Users
+import { UserAddComponent } from './app/components/user-add/user-add.component';
 import { UserEditComponent } from './app/components/user-edit/user-edit.component'
 import { UserPermissionsEditComponent } from './app/components/user-permissions-edit/user-permissions-edit.component'
 import { UserPermissionsAddComponent } from './app/components/user-permissions-add/user-permissions-add.component'
@@ -75,3 +77,4 @@ angular.module('app.components')
 .component('customerEdit', CustomerEditComponent)
 .component('customerAdd', CustomerAddComponent)
 .component('customerList', CustomerListComponent)
+.component('userAdd', UserAddComponent)
