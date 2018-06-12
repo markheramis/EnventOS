@@ -110,13 +110,13 @@
                                             <td>
                                                 <div class="input-group">
                                                     <span class="input-group-addon">
-                                                        <button class="btn btn-xs btn-primary" ng-click="vm.updatesaleItemsQuantity(item.id, -1)">
+                                                        <a class="btn btn-xs btn-primary" ng-click="vm.updatesaleItemsQuantity(item.id, -1)">
                                                             <i class="fa fa-angle-left"></i>
-                                                        </button>
+                                                        </a>
                                                     </span>
                                                     <input class="form-control text-center" type="number" value="{{item.quantity}}">
                                                     <span class="input-group-addon">
-                                                        <button
+                                                        <a
                                                             class="btn btn-xs btn-default"
                                                             ng-click="vm.updatesaleItemsQuantity(item.id, 1)"
                                                             ng-disabled="!vm.canAddQuantity(item.id)"
@@ -125,7 +125,7 @@
                                                                 'btn-danger': !vm.canAddQuantity(item.id)
                                                             }">
                                                             <i class="fa fa-angle-right"></i>
-                                                        </button>
+                                                        </a>
                                                     </span>
                                                 </div>
                                             </td>
