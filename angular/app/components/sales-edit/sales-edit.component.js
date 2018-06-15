@@ -1,7 +1,6 @@
 class SalesEditController{
     constructor($state, $stateParams, API){
         'ngInject';
-        this.$this = this
         this.API = API
         this.$state = $state
         this.formSubmitted = false
@@ -27,13 +26,12 @@ class SalesEditController{
 
         let Sales = this.API.service('sales',API.all('sales'))
         Sales.one($stateParams.salesId).get().then((response) => {
-            this.salesData = API.copy(response)
-
-            response = response.plain()
-            this.payment_type = response.data.payment_type
-            this.customer_id = response.data.customer_id
-            this.payment_amount = Number.parseFloat(response.data.payment_amount)
-            this.comments = response.data.comments
+            this.salesData          = API.copy(response)
+            response                = response.plain()
+            this.payment_type       = response.data.payment_type
+            this.customer_id        = response.data.customer_id
+            this.payment_amount     = Number.parseFloat(response.data.payment_amount)
+            this.comments           = response.data.comments
 
             let saleItems = response.data.items
             saleItems.forEach((saleItem) => {
@@ -67,11 +65,11 @@ class SalesEditController{
             item.total_selling_price = (item.quantity * Number.parseFloat(item.selling_price)).toFixed(2)
             this.saleItems.push(item)
         } else {
-            this.saleItems[index].quantity++
-            this.saleItems[index].total_cost_price = (this.saleItems[index].quantity * Number.parseFloat(this.saleItems[index].cost_price)).toFixed(2)
-            this.saleItems[index].total_selling_price = (this.saleItems[index].quantity * Number.parseFloat(this.saleItems[index].selling_price)).toFixed(2)
+            let current = this.saleItems[index]
+            current.quantity++
+            current.total_cost_price = (current.quantity * Number.parseFloat(current.cost_price)).toFixed(2)
+            current.total_selling_price = (current.quantity * Number.parseFloat(current.selling_price)).toFixed(2)
         }
-
         this.updateTotal()
     }
 
