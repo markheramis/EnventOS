@@ -59,6 +59,7 @@
   },
   "scripts": {
     "postinstall": "bower install && gulp --production",
-    "start": "gulp watch"
+    "deploy": "php artisan migrate:refresh && php artisan db:seed",
+    "start": "gulp && gulp watch"
   }
 }
