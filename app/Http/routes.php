@@ -40,4 +40,5 @@ $api->group(['middleware' => ['api', 'api.auth', 'role:admin.super|admin.user']]
     $api->controller('suppliers','SupplierController');
     $api->controller('items','ItemController');
     $api->controller('sales','SalesController');
+    $api->controller('receivings','ReceivingsController');
 });

@@ -1,3 +1,7 @@
+//  Receiving
+import {ReceivingEditComponent} from './app/components/receiving-edit/receiving-edit.component';
+import {ReceivingAddComponent} from './app/components/receiving-add/receiving-add.component';
+import {ReceivingListComponent} from './app/components/receiving-list/receiving-list.component';
 // Sales
 import {SalesCreateComponent} from './app/components/sales-create/sales-create.component';
 import {SalesEditComponent} from './app/components/sales-edit/sales-edit.component';
@@ -44,6 +48,11 @@ import { NavHeaderComponent } from './app/components/nav-header/nav-header.compo
 import { DashboardComponent } from './app/components/dashboard/dashboard.component'
 
 angular.module('app.components')
+// Receiving
+.component('receivingEdit', ReceivingEditComponent)
+.component('receivingAdd', ReceivingAddComponent)
+.component('receivingList', ReceivingListComponent)
+// Sales
 .component('salesCreate', SalesCreateComponent)
 .component('salesEdit', SalesEditComponent)
 .component('salesList', SalesListComponent)

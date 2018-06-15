@@ -39,7 +39,40 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             }
         }
     })
-
+    .state('app.receiving-list',{
+        url: '/receiving/list',
+        data: {auth: true},
+        views: {
+            'main@app':{
+                template: '<receiving-list></receiving-list>'
+            }
+        }
+    })
+    .state('app.receiving-add',{
+        url: '/receiving/add',
+        data: {auth: true},
+        views: {
+            'main@app':{
+                template: '<receiving-add></receiving-add>'
+            }
+        },
+        params:{
+            alerts: null
+        }
+    })
+    .state('app.receiving-edit',{
+        url: '/receiving/edit/:receivingId',
+        data: {auth: true},
+        views: {
+            'main@app':{
+                template: '<receiving-edit></receiving-edit>'
+            }
+        },
+        params: {
+            alerts: null,
+            receivingId: null
+        }
+    })
     .state('app.sales-create',{
         url: '/sales/create',
         data: {auth: true},
