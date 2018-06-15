@@ -58,7 +58,7 @@
     "npm": ">=3"
   },
   "scripts": {
-    "postinstall": "bower install && gulp --production",
+    "postinstall": "composer install && bower install && gulp --production",
     "deploy": "php artisan migrate:refresh && php artisan db:seed",
     "start": "gulp && gulp watch"
   }
