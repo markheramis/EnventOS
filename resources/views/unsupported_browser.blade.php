@@ -1,7 +1,7 @@
 <!doctype html>
 <html ng-app="app">
 <head>
-    <title>Laravel 5 angular material starter</title>
+    <title>EnventOS</title>
 </head>
 <body style="background-color: #FBFBFB;text-align:center;font-family: Helvetica, Arial;color: #717887">
 
