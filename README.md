@@ -2,7 +2,7 @@
 **InventOS** POS built on top of the [Laravel Angular Admin](http://silverbux.github.io/laravel-angular-admin/) project.
 
 ## Project Objective
-To create a robust open-source solution for inventory and POS use-cases that is capable of operating on the web and/or as an offline software solution.
+To create a robust and easily deployable open-source solution for inventory and POS management software. It is aimed to be easy to maintain, easy to configure, secure and light-weight (hopefully).
 
 ## Screenshots
 Coming soon
@@ -10,20 +10,15 @@ Coming soon
 ## Demo
 Comming soon
 
-*Note: If you register or use Oauth to sign-in your info will be available on public under user lists component, you can use credentials below.*
-
-> admin@example.com / password
-
 ## Installation
 ```
-$ composer install && npm install
+$ npm install
 ```
 
 Open ```.env``` and enter necessary config for DB and Oauth Providers Settings.
 
 ```
-$ php artisan migrate
-$ php artisan db:seed
+$ npm run deploy
 ```
 
 ## Work Flow
@@ -51,3 +46,11 @@ This project wont be possible without the following, We acknowledge and are grat
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+## Todo
+- Post screenshots
+- Deploy an online demo
+- add  safe delete option to all `CRUD` features.
+- complete the permission based API access.
+- complete the permission based routing in angular.
+- sales and receiving edit should not delete its items and inventory records when updating, it should delete only if the certain item is removed from the transaction or else, just update the item's information `(quantity, price etc)` as needed.
