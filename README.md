@@ -54,3 +54,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - complete the permission based API access.
 - complete the permission based routing in angular.
 - sales and receiving edit should not delete its items and inventory records when updating, it should delete only if the certain item is removed from the transaction or else, just update the item's information `(quantity, price etc)` as needed.
+- add `notification` function?
