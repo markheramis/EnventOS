@@ -25,7 +25,7 @@ class CreateSuppliersTable extends Migration
 			$table->string('city', 20);
 			$table->string('state', 30);
 			$table->string('zip', 10);
-			$table->text('comments');
+			$table->text('comments')->nullable();
 			$table->timestamps();
 		});
     }

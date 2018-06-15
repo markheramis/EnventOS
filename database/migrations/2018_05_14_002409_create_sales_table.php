@@ -22,7 +22,7 @@ class CreateSalesTable extends Migration
             $table->decimal('selling_price',9,2);
             $table->decimal('payment_amount',9,2);
 			$table->string('payment_type', 15)->nullable();
-			$table->string('comments', 255)->nullable();
+			$table->string('comments', 255)->default('N/A')->nullable();
 			$table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('restrict');

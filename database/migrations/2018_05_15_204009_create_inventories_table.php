@@ -20,7 +20,7 @@ class CreateInventoriesTable extends Migration
             $table->integer('sales_id')->unsigned()->nullable();
             $table->integer('receiving_id')->unsigned()->nullable();
 			$table->integer('in_out_qty');
-			$table->string('remarks', 255);
+			$table->string('remarks', 255)->default('N/A')->nullable();
 			$table->timestamps();
 
             $table->foreign('item_id')->references('id')->on('items')->onDelete('restrict');
