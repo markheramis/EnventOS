@@ -50,6 +50,10 @@ class SalesCreateController{
     searchsaleItems(searchId)
     {
         let result = -1
+        /*
+         * @problem: for some reason if the search is found the function still continues the loop
+         * @todo: I should probably fix this somewhere in the future, it'd be problemtic if we loop through a large array.
+         */
         this.saleItems.findIndex((current,index) => {
             if(current.id == searchId)
             {

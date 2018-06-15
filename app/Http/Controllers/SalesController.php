@@ -9,6 +9,10 @@ use App\Http\Requests;
 use App\Models\Sales;
 use App\Models\SaleItems;
 use App\Models\Inventory;
+
+/*
+ * @todo must add a safe delete option
+ */
 class SalesController extends Controller{
 
     public function getIndex(Request $request){
@@ -62,10 +66,13 @@ class SalesController extends Controller{
             $sales->selling_price = $data['selling_price'];
             $sales->payment_type = $data['payment_type'];
             $sales->payment_amount = $data['payment_amount'];
-            $sales->payment_type = $data['payment_type'];
             if($sales->save())
             {
-
+                /*
+                 * This process is inefficient, will change this soon to improve data-integrity
+                 * @status temporary
+                 * @todo must do it so that we don't actually delete old saleItem and inventory data that were not deleted in the transaction to preserve the transaction data and therefore improve data-integrity
+                 */
 
                 # return all items
                 foreach($sales->items as $item){
@@ -101,7 +108,7 @@ class SalesController extends Controller{
                     $inventory->save();
                 }
             }
-            return response()->success($sales);
+            return response()->success('success');
         // }else{
         //  return response()->error('Permission denied');
         // }
@@ -147,7 +154,11 @@ class SalesController extends Controller{
 
     public function deleteSales($id){
         // if ($user->can('delete_sales')){
+            $sale = Sales::find($id);
+            $saleItems = SaleItems::where('sale_id', $sale->id);
 
+            $saleItems->delete();
+            $sale->delete();
         // }  else {
                 // return response()->error('Permission denied');
         // }
