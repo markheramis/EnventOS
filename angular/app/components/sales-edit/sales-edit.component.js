@@ -29,6 +29,7 @@ class SalesEditController{
             this.salesData          = API.copy(response)
             response                = response.plain()
             this.payment_type       = response.data.payment_type
+            this.status             = response.data.status
             this.customer_id        = response.data.customer_id
             this.payment_amount     = Number.parseFloat(response.data.payment_amount)
             this.comments           = response.data.comments
@@ -136,6 +137,7 @@ class SalesEditController{
             this.salesData.data.selling_price = this.selling_price
             this.salesData.data.payment_amount = this.payment_amount
             this.salesData.data.payment_type = this.payment_type
+            this.salesData.data.status = this.status
             this.salesData.data.comments = this.comments
             this.salesData.data.items = this.saleItems
 

@@ -132,6 +132,7 @@ class SalesCreateController{
                 cost_price      : this.cost_price,
                 selling_price   : this.selling_price,
                 payment_amount  : this.payment_amount,
+                status          : this.status,
                 comments        : this.comments,
                 saleItems       : this.saleItems
             }).then(() => {

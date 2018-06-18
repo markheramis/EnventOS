@@ -65,6 +65,7 @@ class SalesController extends Controller{
             $sales->cost_price = $data['cost_price'];
             $sales->selling_price = $data['selling_price'];
             $sales->payment_type = $data['payment_type'];
+            $sales->status = $data['status'];
             $sales->payment_amount = $data['payment_amount'];
             if($sales->save())
             {
@@ -125,6 +126,7 @@ class SalesController extends Controller{
             $sales->selling_price = $request->input('selling_price');
             $sales->payment_amount = $request->input('payment_amount');
             $sales->payment_type = $request->input('payment_type');
+            $sales->status = $request->input('status');
             $sales->comments = $request->input('comments');
             if($sales->save()){
                 foreach($request->input('saleItems') as $item){

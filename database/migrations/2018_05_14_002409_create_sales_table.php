@@ -21,7 +21,8 @@ class CreateSalesTable extends Migration
             $table->decimal('cost_price',9,2);
             $table->decimal('selling_price',9,2);
             $table->decimal('payment_amount',9,2);
-			$table->string('payment_type', 15)->nullable();
+			$table->enum('payment_type', ['Cash','Check','Debit','Credit'])->default('Cash')->nullable();
+            $table->enum('status',['complete','delivering','processing','cancelled'])->default('processing')->nullable();
 			$table->string('comments', 255)->default('N/A')->nullable();
 			$table->timestamps();
 

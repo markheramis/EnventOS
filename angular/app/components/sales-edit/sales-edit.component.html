@@ -82,13 +82,22 @@
                                     <p ng-show="salesForm.customer_id.$error.required && (vm.formSubmitted || salesForm.customer_id.$touched)" class="help-block">Customer is required</p>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-group" ng-class="{ 'has-error': salesForm.payment_type.$invalid && (vm.formSubmitted || salesForm.payment_type.$touched)}">
                                     <label for="payment_type" class="control-label">Payment Type</label>
                                     <select class="form-control" name="payment_type" ng-model="vm.payment_type" required>
                                         <option ng-repeat="type in ['Cash','Check','Debit','Credit']" value="{{type}}" ng-selected="type == vm.payment_type">{{type}}</option>
                                     </select>
                                     <p ng-show="salesForm.payment_type.$error.required && (vm.formSubmitted || salesForm.payment_type.$touched)" class="help-block">Payment is required</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group" ng-class="{'has-error': salesForm.status.$invalid && (vm.formSubmitted || salesForm.status.$touched)}">
+                                    <label for="status" class="control-label">Sales Status</label>
+                                    <select class="form-control" name="status" ng-model="vm.status" required>
+                                        <option ng-repeat="status in ['complete','delivering','processing','cancelled']" value="{{status}}" ng-select="status == vm.status">{{status}}</option>
+                                    </select>
+                                    <p ng-show="salesForm.status.$error.required && (vm.formSubmitted || salesForm.status.$touched)" class="help-block">Sales Status is required</p>
                                 </div>
                             </div>
                             <div class="col-md-12">

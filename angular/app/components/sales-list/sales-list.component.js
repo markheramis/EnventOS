@@ -21,6 +21,7 @@ class SalesListController{
                 DTColumnBuilder.newColumn(null).withTitle('User').renderWith(userHtml),
                 DTColumnBuilder.newColumn(null).withTitle('Customer').renderWith(customerHtml),
                 DTColumnBuilder.newColumn('payment_type').withTitle('Payment Type'),
+                DTColumnBuilder.newColumn('status').withTitle('Status'),
                 DTColumnBuilder.newColumn('items_count').withTitle('Items'),
                 DTColumnBuilder.newColumn('selling_price').withTitle('Selling Price'),
                 DTColumnBuilder.newColumn('created_at').withTitle('Date'),
