@@ -46,6 +46,26 @@ class DashboardController {
             this.total_cost += period.total_cost
         })
     })
+    Inventory = API.service('inventory')
+    Inventory.getList({
+        sales: true
+    }).then((response) => {
+        this.recent_sales = response.plain()
+    })
+
+    Inventory.getList({
+        receiving: true
+    }).then((response) => {
+        this.recent_receivings = response.plain()
+    })
+
+    let Sales = this.API.service('sales')
+    Sales.getList({
+        user: true,
+        customer: true
+    }).then((response) => {
+        this.sales = response.plain()
+    })
   }
 }
 
