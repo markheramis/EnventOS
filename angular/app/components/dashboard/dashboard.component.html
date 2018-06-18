@@ -84,55 +84,60 @@
                     </div>
                 </div>
                 <div class="box-body">
-                    <ul class="products-list product-list-in-box">
-                        <li class="item">
-                            <div class="product-img">
-                                <img src="/img/default-50x50.gif" alt="Product Image">
+                    <uib-tabset active="activeJustified" justified="true">
+                        <uib-tab index="0" heading="Sales">
+                            <div class="box box-primary">
+                                <div class="box-body">
+                                    <div class="tab-pane" id="sales">
+                                        <table class="table no-margin">
+                                            <thead>
+                                                <tr>
+                                                    <th>Order ID</th>
+                                                    <th>Item</th>
+                                                    <th>Count</th>
+                                                    <th>Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="sale in vm.recent_sales">
+                                                    <td>OR{{ sale.sales_id }}</td>
+                                                    <td>{{ sale.item.item_name }}</td>
+                                                    <td>{{ sale.in_out_qty * -1 }}</td>
+                                                    <td>{{ sale.created_at}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">Samsung TV
-                                    <span class="label label-warning pull-right">$1800</span></a>
-                                <span class="product-description">
-                                    Samsung 32" 1080p 60Hz LED Smart HDTV.
-                                </span>
+                        </uib-tab>
+                        <uib-tab index="1" heading="Arrivals">
+                            <div class="box box-danger">
+                                <div class="box-body">
+                                    <div class="tab-pane" id="arrivals">
+                                        <table class="table no-margin">
+                                            <thead>
+                                                <tr>
+                                                    <th>Order ID</th>
+                                                    <th>Item</th>
+                                                    <th>Count</th>
+                                                    <th>Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="arrival in vm.recent_receivings">
+                                                    <td>OR{{ arrival.receiving_id }}</td>
+                                                    <td>{{ arrival.item.item_name }}</td>
+                                                    <td>{{ arrival.in_out_qty }}</td>
+                                                    <td>{{ arrival.created_at}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                        </li>
-                        <li class="item">
-                            <div class="product-img">
-                                <img src="/img/default-50x50.gif" alt="Product Image">
-                            </div>
-                            <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">Bicycle
-                                    <span class="label label-info pull-right">$700</span></a>
-                                <span class="product-description">
-                                    26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-                                </span>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="product-img">
-                                <img src="/img/default-50x50.gif" alt="Product Image">
-                            </div>
-                            <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">Xbox One <span class="label label-danger pull-right">$350</span></a>
-                                <span class="product-description">
-                                    Xbox One Console Bundle with Halo Master Chief Collection.
-                                </span>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="product-img">
-                                <img src="/img/default-50x50.gif" alt="Product Image">
-                            </div>
-                            <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">PlayStation 4
-                                    <span class="label label-success pull-right">$399</span></a>
-                                <span class="product-description">
-                                    PlayStation 4 500GB Console (PS4)
-                                </span>
-                            </div>
-                        </li>
-                    </ul>
+                        </uib-tab>
+                    </uib-tabset>
                 </div>
                 <div class="box-footer text-center">
                     <a href="javascript:void(0)" class="uppercase">View All Products</a>
