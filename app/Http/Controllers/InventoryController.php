@@ -49,7 +49,9 @@ class InventoryController extends Controller
             ->whereDate('created_at' , '>'  , $start_date)
             ->whereDate('created_at' , '<=' , $end_date)
             ->whereNotNull('sales_id')
-            ->with('item')
+            ->with(['item' => function($query){
+                $query->select('id','cost_price','selling_price');
+            }])
             ->get();
 
             $current_recap['inventory'] = $inventory;
