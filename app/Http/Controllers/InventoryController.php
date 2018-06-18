@@ -45,10 +45,9 @@ class InventoryController extends Controller
             $start_date = $current_date->format('Y-m-d');
             $current_recap['date']['start']['month'] = $current_date->format('F');
             $current_recap['date']['start']['date'] = $current_date->format('d M, Y');
-            $inventory = Inventory::whereBetween('created_at',[
-                $start_date,
-                $end_date
-            ])
+            $inventory = Inventory::whereNotNull('sales_id')
+            ->whereDate('created_at' , '>'  , $start_date)
+            ->whereDate('created_at' , '<=' , $end_date)
             ->whereNotNull('sales_id')
             ->with('item')
             ->get();
