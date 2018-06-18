@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <p class="text-center">
-                                <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
+                                <strong>Sales: {{vm.recap_start}} - {{vm.recap_end}}</strong>
                             </p>
                             <div class="chart">
                                 <canvas id="line" class="chart chart-line"  chart-data="vm.recap_data" chart-labels="vm.recap_labels" chart-legend="false" chart-series="vm.recap_series" chart-click="onClick" style="height: 180px;">
