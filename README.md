@@ -1,5 +1,5 @@
-# InventOS
-**InventOS** POS built on top of the [Laravel Angular Admin](http://silverbux.github.io/laravel-angular-admin/) project.
+# EnventOS
+**EnventOS** POS built on top of the [Laravel Angular Admin](http://silverbux.github.io/laravel-angular-admin/) project.
 
 ## Project Objective
 To create a robust and easily deployable open-source solution for inventory and POS management software. It is aimed to be easy to maintain, easy to configure, secure and light-weight (hopefully).
