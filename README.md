@@ -57,3 +57,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - add `notification` function?
 - Sales receipt via email?
 - On sales, inventory should be dealt individually when the purchased item is an item-kit.
+- Daily balance sheet
+- Ledger
+- Problematic with angular-datatable pagination, must solve in future!
+- add Global settings
