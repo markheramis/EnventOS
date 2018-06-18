@@ -10,12 +10,23 @@ use App\Models\Inventory;
 
 class InventoryController extends Controller
 {
-    public function getIndex(){
+    public function getIndex(Request $request)
+    {
+        $limit = ($request->query('limit'))?$request->query('limit'): 10;
+        $inventory = Inventory::limit($limit);
+        if($request->query('sales') == true)
+            $inventory = $inventory->whereNotNull('sales_id');
+        if($request->query('receiving') == true)
+            $inventory = $inventory->whereNotNull('receiving_id');
+        $inventory = $inventory->with([
+            'item',
+            'user' => function($query){
+                $query->select('id','name');
+            }
+        ]);
 
-    }
-
-    public function getInventory($itemId){
-
+        $inventory = $inventory->get();
+        return response()->success(compact('inventory'));
     }
 
     public function getRecap(Request $request){
