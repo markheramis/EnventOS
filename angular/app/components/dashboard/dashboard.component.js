@@ -9,8 +9,8 @@ class DashboardController {
 
     $scope.onClick = function () {}
 
-    $scope.pieLabels = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales']
-    $scope.pieData = [300, 500, 100]
+    $scope.pieLabels = ['Completed', 'delivering', 'processing','Cancelled']
+    $scope.pieData = [1, 1, 1, 1]
 
     this.recap_labels = []
     this.recap_series = ['Profit', 'Revenue','Cost']
