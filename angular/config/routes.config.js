@@ -39,72 +39,72 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             }
         }
     })
-    .state('app.receiving-list',{
-        url: '/receiving/list',
+    .state('app.purchase-list',{
+        url: '/purchase/list',
         data: {auth: true},
         views: {
             'main@app':{
-                template: '<receiving-list></receiving-list>'
+                template: '<purchase-list></purchase-list>'
             }
         }
     })
-    .state('app.receiving-add',{
-        url: '/receiving/add',
+    .state('app.purchase-add',{
+        url: '/purchase/add',
         data: {auth: true},
         views: {
             'main@app':{
-                template: '<receiving-add></receiving-add>'
+                template: '<purchase-add></purchase-add>'
             }
         },
         params:{
             alerts: null
         }
     })
-    .state('app.receiving-edit',{
-        url: '/receiving/edit/:receivingId',
+    .state('app.purchase-edit',{
+        url: '/purchase/edit/:purchaseId',
         data: {auth: true},
         views: {
             'main@app':{
-                template: '<receiving-edit></receiving-edit>'
+                template: '<purchase-edit></purchase-edit>'
             }
         },
         params: {
             alerts: null,
-            receivingId: null
+            purchaseId: null
         }
     })
-    .state('app.sales-create',{
-        url: '/sales/create',
+    .state('app.orders-create',{
+        url: '/orders/create',
         data: {auth: true},
         views: {
             'main@app':{
-                template:'<sales-create></sales-create>'
+                template:'<orders-create></orders-create>'
             }
         },
         params: {
             alerts: null
         }
     })
-    .state('app.sales-list',{
-        url: '/sales/list',
+    .state('app.orders-list',{
+        url: '/orders/list',
         data: {auth: true},
         views: {
             'main@app':{
-                template: '<sales-list></sales-list>'
+                template: '<orders-list></orders-list>'
             }
         }
     })
-    .state('app.sales-edit',{
-        url: '/sales/edit/:salesId',
+    .state('app.orders-edit',{
+        url: '/orders/edit/:ordersId',
         data: {auth: true},
         views: {
             'main@app':{
-                template: '<sales-edit></sales-edit>'
+                template: '<orders-edit></orders-edit>'
             }
         },
         params:{
             alerts: null,
-            salesId: null
+            ordersId: null
         }
     })
     .state('app.item-kits-list',{
