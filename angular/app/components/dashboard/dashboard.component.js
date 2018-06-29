@@ -21,6 +21,11 @@ class DashboardController {
     this.total_cost = 0
     this.recap_start = ""
     this.recap_end = ""
+
+    this.order_count = 0
+    this.purchase_count = 0
+    this.customer_count = 0
+    this.item_count = 0
     /*
      * @todo need to change color for the recap graph
      *  profit should be green
@@ -53,18 +58,16 @@ class DashboardController {
         this.recent_sales = response.plain()
     })
 
-    Inventory.getList({
-        receiving: true
-    }).then((response) => {
-        this.recent_receivings = response.plain()
+
+    let Orders = this.API.service('orders')
+    Orders.getList().then((response) => {
+        this.orders = response.plain()
+    })
+    let Purchase = this.API.service('purchases')
+    Purchase.getList().then((response) => {
+        this.purchases = response.plain()
     })
 
-    let Sales = this.API.service('sales')
-    Sales.getList({
-        user: true,
-        customer: true
-    }).then((response) => {
-        this.sales = response.plain()
     })
   }
 }

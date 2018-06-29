@@ -13,29 +13,31 @@ class InventoryController extends Controller
     public function getIndex(Request $request)
     {
         $limit = ($request->query('limit'))?$request->query('limit'): 10;
-        $inventory = Inventory::limit($limit);
-        if($request->query('sales') == true)
-            $inventory = $inventory->whereNotNull('sales_id');
-        if($request->query('receiving') == true)
-            $inventory = $inventory->whereNotNull('receiving_id');
-        $inventory = $inventory->with([
+        $inventory = Inventory::limit($limit)
+        # optional query, execute only when orders = true
+        ->when($request->query('orders'),function($query){
+            # query rows that has query_id value.
+            return $query->whereNotNull('order_id');
+        })
+        # optional query, execute only when purchases = true
+        ->when($request->query('purchases'), function($query){
+            # query rows that has purchase_id value.
+            return $query->whereNotNull('purchase_id');
+        })
+        ->with([
             'item',
             'user' => function($query){
                 $query->select('id','name');
             }
-        ]);
-
-        $inventory = $inventory->get();
+        ])
+        ->get();
         return response()->success(compact('inventory'));
     }
 
     public function getRecap(Request $request){
-
-
         $recap = [];
         $current_date = new DateTime(); # this should be now
         $interval = new DateInterval('P1M');
-
         for($i=0; $i < 7; $i++){
             $current_recap = [];
             $end_date = $current_date->format('Y-m-d');
@@ -45,15 +47,14 @@ class InventoryController extends Controller
             $start_date = $current_date->format('Y-m-d');
             $current_recap['date']['start']['month'] = $current_date->format('F');
             $current_recap['date']['start']['date'] = $current_date->format('d M, Y');
-            $inventory = Inventory::whereNotNull('sales_id')
+            $inventory = Inventory::whereNotNull('order_id')
             ->whereDate('created_at' , '>'  , $start_date)
             ->whereDate('created_at' , '<=' , $end_date)
-            ->whereNotNull('sales_id')
+            ->whereNotNull('order_id')
             ->with(['item' => function($query){
                 $query->select('id','cost_price','selling_price');
             }])
             ->get();
-
             $current_recap['inventory'] = $inventory;
             $total_cost     = 0;
             $total_selling  = 0;
