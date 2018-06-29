@@ -66,6 +66,11 @@ Elixir.extend('bower', function (jsOutputFile, jsOutputFolder, cssOutputFile, cs
             './dist/css/bootstrap.min.css'
           ]
         },
+        'font-awesome':{
+          main:[
+            './css/*.min.*'
+          ]
+        },
         'angular-chart.js': {
           'ignore': true
         },
@@ -96,6 +101,11 @@ Elixir.extend('bower', function (jsOutputFile, jsOutputFolder, cssOutputFile, cs
         bootstrap: {
           main: [
             './dist/fonts/*.*'
+          ]
+        },
+        'font-awesome':{
+          main: [
+            './fonts/*.*'
           ]
         }
       }
