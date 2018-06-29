@@ -1,11 +1,11 @@
-//  Receiving
-import {ReceivingEditComponent} from './app/components/receiving-edit/receiving-edit.component';
-import {ReceivingAddComponent} from './app/components/receiving-add/receiving-add.component';
-import {ReceivingListComponent} from './app/components/receiving-list/receiving-list.component';
-// Sales
-import {SalesCreateComponent} from './app/components/sales-create/sales-create.component';
-import {SalesEditComponent} from './app/components/sales-edit/sales-edit.component';
-import {SalesListComponent} from './app/components/sales-list/sales-list.component';
+//  Purchase
+import {PurchaseEditComponent} from './app/components/purchase-edit/purchase-edit.component';
+import {PurchaseAddComponent} from './app/components/purchase-add/purchase-add.component';
+import {PurchaseListComponent} from './app/components/purchase-list/purchase-list.component';
+// Orders
+import {OrdersCreateComponent} from './app/components/orders-create/orders-create.component';
+import {OrdersEditComponent} from './app/components/orders-edit/orders-edit.component';
+import {OrdersListComponent} from './app/components/orders-list/orders-list.component';
 // Item Kits
 import {ItemKitsEditComponent} from './app/components/item-kits-edit/item-kits-edit.component';
 import {ItemKitsAddComponent} from './app/components/item-kits-add/item-kits-add.component';
@@ -48,14 +48,14 @@ import { NavHeaderComponent } from './app/components/nav-header/nav-header.compo
 import { DashboardComponent } from './app/components/dashboard/dashboard.component'
 
 angular.module('app.components')
-// Receiving
-.component('receivingEdit', ReceivingEditComponent)
-.component('receivingAdd', ReceivingAddComponent)
-.component('receivingList', ReceivingListComponent)
-// Sales
-.component('salesCreate', SalesCreateComponent)
-.component('salesEdit', SalesEditComponent)
-.component('salesList', SalesListComponent)
+// Purchase
+.component('purchaseEdit', PurchaseEditComponent)
+.component('purchaseAdd', PurchaseAddComponent)
+.component('purchaseList', PurchaseListComponent)
+// Orders
+.component('ordersCreate', OrdersCreateComponent)
+.component('ordersEdit', OrdersEditComponent)
+.component('ordersList', OrdersListComponent)
 // Item Kits
 .component('itemKitsEdit', ItemKitsEditComponent)
 .component('itemKitsAdd', ItemKitsAddComponent)
