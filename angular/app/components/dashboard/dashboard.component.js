@@ -68,6 +68,25 @@ class DashboardController {
         this.purchases = response.plain()
     })
 
+    Orders.one('status-count').get().then((response) => {
+        response = response.plain()
+        console.log(response.data.complete)
+        $scope.pieData[0] = response.data.complete
+        $scope.pieData[1] = response.data.delivering
+        $scope.pieData[2] = response.data.processing
+        $scope.pieData[3] = response.data.cancelled
+    })
+    Orders.one('count').get().then((response) => {
+        this.order_count = response.plain().data
+    })
+    API.service('customers').one('count').get().then((response) => {
+        this.customer_count = response.plain().data
+    })
+    API.service('items').one('count').get().then((response) => {
+        this.item_count = response.plain().data
+    })
+    API.service('purchases').one('count').get().then((response) => {
+        this.purchase_count = response.plain().data
     })
   }
 }

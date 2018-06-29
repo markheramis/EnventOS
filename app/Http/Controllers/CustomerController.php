@@ -58,4 +58,10 @@ class CustomerController extends Controller
             return response()->success('success');
         }
     }
+
+    public function getCount(Request $request)
+    {
+        $count = Customer::count();
+        return response()->success($count);
+    }
 }

@@ -221,7 +221,15 @@ class ItemController extends Controller
         {
             return response()->error($e);
         }
+    }
 
-
+    public function getCount(Request $request)
+    {
+        $type = ($request->query('type')) ? $request->query('type') : false;
+        $count = Item::when($type,function($query) use ($type) {
+            $query->where('type',$type);
+        })
+        ->count();
+        return response()->success($count);
     }
 }
