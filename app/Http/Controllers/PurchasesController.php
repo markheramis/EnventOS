@@ -37,7 +37,11 @@ class PurchasesController extends Controller
             'supplier' => function($query){
                 $query->select('id','first_name','last_name','company_name');
             },
-            'items'
+            'items' => function($query){
+                $query
+                ->join('items','purchase_items.item_id','=','items.id')
+                ->select('purchase_items.*','items.item_name as name');
+            }
         ])
         ->find($id);
         return response()->success($purchase);
