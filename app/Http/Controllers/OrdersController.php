@@ -60,47 +60,8 @@ class OrdersController extends Controller{
         $orders->payment_amount = $data['payment_amount'];
         if($orders->save())
         {
-            /*
-            * This process is inefficient, will change this soon to improve data-integrity
-            * @status temporary
-            * @todo must do it so that we don't actually delete old orderItem and inventory data that were not deleted in the transaction to preserve the transaction data and therefore improve data-integrity
-            */
-
-            # return all items
-            foreach($orders->items as $item){
-                $inventory = new Inventory;
-                $inventory->item_id = $item->item_id;
-                $inventory->user_id = Auth::user()->id;
-                $inventory->in_out_qty = $item->quantity;
-                $inventory->remarks = 'Item returned due to transaction edit on Orders (#' . $orders->id . ')';
-                $inventory->order_id = $orders->id;
-                $inventory->save();
-            }
-
-            OrderItems::where('order_id',$orders->id)->delete();
-
-            foreach($data['items'] as $item){
-                $orderItem = new orderItems;
-                $orderItem->order_id = $orders->id;
-                $orderItem->item_id = $item['id'];
-                $orderItem->cost_price = $item['cost_price'];
-                $orderItem->selling_price = $item['selling_price'];
-                $orderItem->quantity = $item['quantity'];
-                $orderItem->total_cost = $item['total_cost_price'];
-                $orderItem->total_selling = $item['total_selling_price'];
-                $orderItem->save();
-
-                # make the new inventory transaction.
-                $inventory = new Inventory;
-                $inventory->item_id = $item['id'];
-                $inventory->user_id = Auth::user()->id;
-                $inventory->in_out_qty = ($item['quantity'] * -1);
-                $inventory->remarks = 'Deducted from order transaction';
-                $inventory->order_id = $orders->id;
-                $inventory->save();
-            }
+            return response()->success('success');
         }
-        return response()->success('success');
     }
 
     public function postOrder(Request $request)
