@@ -15,68 +15,68 @@
                 </div>
                 <form class="form-horizontal" name="customerForm" ng-submit="vm.save(customerForm.$valid)" novalidate>
                     <div class="box-body">
-                      <div ng-if="vm.alerts" class="alert alert-{{alert.type}}" ng-repeat="alert in vm.alerts">
-                          <h4>{{alert.title}}</h4>
-                          <p>{{alert.msg}}</p>
-                      </div>
-                      <div class="form-group" ng-class="{ 'has-error': customerForm.first_name.$invalid && (vm.formSubmitted || customerForm.first_name.$touched) }">
-                          <label for="first_name" class="col-sm-2 control-label">First Name</label>
-                          <div class="col-sm-10">
-                              <input type="text" class="form-control" ng-model="vm.customerData.data.first_name" name="first_name" required>
-                              <p ng-show="customerForm.first_name.$error.required && (vm.formSubmitted || customerForm.first_name.$touched)" class="help-block">First name is required</p>
-                          </div>
-                      </div>
-                      <div class="form-group" ng-class="{ 'has-error': customerForm.last_name.$invalid && (vm.formSubmitted || customerForm.last_name.$touched) }">
-                          <label for="last_name" class="col-sm-2 control-label">Last Name</label>
-                          <div class="col-sm-10">
-                              <input type="text" class="form-control" ng-model="vm.customerData.data.last_name" name="last_name" required>
-                              <p ng-show="customerForm.last_name.$error.required && (vm.formSubmitted || customerForm.last_name.$touched)" class="help-block">Last name is required.</p>
-                          </div>
-                      </div>
-                      <div class="form-group" ng-class="{ 'has-error': customerForm.email.$invalid && vm.formSumbitted || customerForm.email.$touched }">
-                          <label for="email" class="col-sm-2 control-label">Email</label>
-                          <div class="col-sm-10">
-                              <input type="email" class="form-control" ng-model="vm.customerData.data.email" placeholder="Email Address" required>
-                              <p ng-show="customerForm.email.$error.required && (vm.formSubmitted || customerForm.email.$touched)" class="help-block">Email is required.</p>
-                              <p ng-show="customerForm.email.$error.email && (vm.formSubmitted || customerForm.email.$touched)" class="help-block">This is not a valid email.</p>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label for="phone" class="col-sm-2 control-label">Phone</label>
-                          <div class="col-sm-10">
-                              <input type="text" class="form-control" ng-model="vm.customerData.data.phone" placeholder="Phone Number">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label for="address" class="col-sm-2 control-label">Address</label>
-                          <div class="col-sm-10">
-                              <input type="text" class="form-control" ng-model="vm.customerData.data.address" placeholder="Address">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label for="city" class="col-sm-2 control-label">City</label>
-                          <div class="col-sm-10">
-                              <input type="text" class="form-control" ng-model="vm.customerData.data.city" placeholder="City">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label for="state" class="col-sm-2 control-label">State</label>
-                          <div class="col-sm-10">
-                              <input type="text" class="form-control" ng-model="vm.customerData.data.state" placeholder="State">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label for="zip" class="col-sm-2 control-label">Zip Code</label>
-                          <div class="col-sm-10">
-                              <input type="text" class="form-control" ng-model="vm.customerData.data.zip" placeholder="Zip Code">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label for="company_name" class="col-sm-2 control-label">Company Name</label>
-                          <div class="col-sm-10">
-                              <input type="text" class="form-control" ng-model="vm.customerData.data.company_name" placeholder="Company Name">
-                          </div>
-                      </div>
+                        <div ng-if="vm.alerts" class="alert alert-{{alert.type}}" ng-repeat="alert in vm.alerts">
+                            <h4>{{alert.title}}</h4>
+                            <p>{{alert.msg}}</p>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': customerForm.first_name.$invalid && (vm.formSubmitted || customerForm.first_name.$touched) }">
+                            <label for="first_name" class="col-sm-2 control-label">First Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="vm.customerData.data.first_name" name="first_name" required>
+                                <p ng-show="customerForm.first_name.$error.required && (vm.formSubmitted || customerForm.first_name.$touched)" class="help-block">First name is required</p>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': customerForm.last_name.$invalid && (vm.formSubmitted || customerForm.last_name.$touched) }">
+                            <label for="last_name" class="col-sm-2 control-label">Last Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="vm.customerData.data.last_name" name="last_name" required>
+                                <p ng-show="customerForm.last_name.$error.required && (vm.formSubmitted || customerForm.last_name.$touched)" class="help-block">Last name is required.</p>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': customerForm.email.$invalid && vm.formSumbitted || customerForm.email.$touched }">
+                            <label for="email" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" ng-model="vm.customerData.data.email" placeholder="Email Address" required>
+                                <p ng-show="customerForm.email.$error.required && (vm.formSubmitted || customerForm.email.$touched)" class="help-block">Email is required.</p>
+                                <p ng-show="customerForm.email.$error.email && (vm.formSubmitted || customerForm.email.$touched)" class="help-block">This is not a valid email.</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="col-sm-2 control-label">Phone</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="vm.customerData.data.phone" placeholder="Phone Number">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address" class="col-sm-2 control-label">Address</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="vm.customerData.data.address" placeholder="Address">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="city" class="col-sm-2 control-label">City</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="vm.customerData.data.city" placeholder="City">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="state" class="col-sm-2 control-label">State</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="vm.customerData.data.state" placeholder="State">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="zip" class="col-sm-2 control-label">Zip Code</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="vm.customerData.data.zip" placeholder="Zip Code">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="company_name" class="col-sm-2 control-label">Company Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="vm.customerData.data.company_name" placeholder="Company Name">
+                            </div>
+                        </div>
                     </div>
                     <div class="box-footer">
                         <a ui-sref="app.customer-list" class="btn btn-default"><i class="fa fa-angle-double-left"></i> Back</a>

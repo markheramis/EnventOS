@@ -1,22 +1,22 @@
 class NavSidebarController {
-  constructor (AclService, ContextService) {
-    'ngInject'
+    constructor (AclService, ContextService) {
+        'ngInject'
 
-    let navSideBar = this
-    this.can = AclService.can
-    this.AclService = AclService
+        let navSideBar = this
+        this.can = AclService.can
+        this.AclService = AclService
 
-    ContextService.me(function (data) {
-      navSideBar.userData = data
-    })
-  }
+        ContextService.me(function (data) {
+            navSideBar.userData = data
+        })
+    }
 
-  $onInit () {}
+    $onInit () {}
 }
 
 export const NavSidebarComponent = {
-  templateUrl: './views/app/components/nav-sidebar/nav-sidebar.component.html',
-  controller: NavSidebarController,
-  controllerAs: 'vm',
-  bindings: {}
+    templateUrl: './views/app/components/nav-sidebar/nav-sidebar.component.html',
+    controller: NavSidebarController,
+    controllerAs: 'vm',
+    bindings: {}
 }

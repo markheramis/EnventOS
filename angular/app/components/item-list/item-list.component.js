@@ -45,7 +45,7 @@ class ItemListController{
             `
             buttons += `
             <a class="btn btn-xs btn-danger" ng-click="vm.delete(${data.id})">
-              <i class="fa fa-trash-o"></i>
+                <i class="fa fa-trash-o"></i>
             </a>
             `
             return buttons

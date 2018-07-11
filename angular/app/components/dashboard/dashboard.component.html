@@ -12,37 +12,37 @@
                         <div class="btn-group">
                             <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-wrench"></i></button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                            </ul>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                </ul>
+                            </div>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                         </div>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                     </div>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p class="text-center">
-                                <strong>Sales: {{vm.recap_start}} - {{vm.recap_end}}</strong>
-                            </p>
-                            <div class="chart">
-                                <canvas id="line" class="chart chart-line"  chart-data="vm.recap_data" chart-labels="vm.recap_labels" chart-legend="false" chart-series="vm.recap_series" chart-click="onClick" style="height: 180px;">
-                                </canvas>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="text-center">
+                                    <strong>Sales: {{vm.recap_start}} - {{vm.recap_end}}</strong>
+                                </p>
+                                <div class="chart">
+                                    <canvas id="line" class="chart chart-line"  chart-data="vm.recap_data" chart-labels="vm.recap_labels" chart-legend="false" chart-series="vm.recap_series" chart-click="onClick" style="height: 180px;">
+                                    </canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="box-footer">
-                    <div class="row">
-                        <div class="col-sm-4 col-xs-6">
-                            <div class="description-block border-right">
-                                <!--
-                                I'll just implement this next time
-                                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-sm-4 col-xs-6">
+                                <div class="description-block border-right">
+                                    <!--
+                                    I'll just implement this next time
+                                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
                                 -->
                                 <h5 class="description-header">{{vm.total_revenue}}</h5>
                                 <span class="description-text">TOTAL REVENUE</span>
@@ -53,252 +53,252 @@
                                 <!--
                                 I'll just implement this next time
                                 <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
-                                -->
-                                <h5 class="description-header">{{vm.total_cost}}</h5>
-                                <span class="description-text">TOTAL COST</span>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-xs-6">
-                            <div class="description-block border-right">
-                                <!--
-                                I'll just implement this next time
-                                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
-                                -->
-                                <h5 class="description-header">{{vm.total_profit}}</h5>
-                                <span class="description-text">TOTAL PROFIT</span>
-                            </div>
+                            -->
+                            <h5 class="description-header">{{vm.total_cost}}</h5>
+                            <span class="description-text">TOTAL COST</span>
                         </div>
                     </div>
+                    <div class="col-sm-4 col-xs-6">
+                        <div class="description-block border-right">
+                            <!--
+                            I'll just implement this next time
+                            <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
+                        -->
+                        <h5 class="description-header">{{vm.total_profit}}</h5>
+                        <span class="description-text">TOTAL PROFIT</span>
+                    </div>
                 </div>
             </div>
-            <!-- /Statistics -->
-
-            <!-- Recent Inventory Activity -->
-            <div class="box box-primary" id="recent_inventory_activty">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Recent Inventory Activity</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <!--
-                    @NOTE: For some reason the default boostrap tab doesn't work I don't know why yet because I'm offline right now.
-                    I'll just get back to this soon.
-                    @TODO: Use the default bootstrap tab
-                    -->
-                    <uib-tabset active="activeJustified" justified="true">
-                        <uib-tab index="0" heading="Orders">
-                            <div class="box box-primary">
-                                <div class="box-body">
-                                    <div class="tab-pane" id="sales">
-                                        <table class="table no-margin">
-                                            <thead>
-                                                <tr>
-                                                    <th>Order ID</th>
-                                                    <th>Staff</th>
-                                                    <th>Customer</th>
-                                                    <th>Grand Total</th>
-                                                    <th>Status</th>
-                                                    <th>Date</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="order in vm.orders">
-                                                    <td>OR{{ order.id }}</td>
-                                                    <td>{{ order.user.name }}</td>
-                                                    <td>{{ order.customer.first_name }} {{ order.customer.last_name }}</td>
-                                                    <td>{{ order.selling_price }}</td>
-                                                    <td>{{ order.status }}</td>
-                                                    <td>{{ order.created_at }}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </uib-tab>
-                        <uib-tab index="1" heading="Purchased">
-                            <div class="box box-danger">
-                                <div class="box-body">
-                                    <div class="tab-pane" id="arrivals">
-                                        <table class="table no-margin">
-                                            <thead>
-                                                <tr>
-                                                    <th>Purchase #</th>
-                                                    <th>Staff</th>
-                                                    <th>Supplier</th>
-                                                    <th>Grand Total</th>
-                                                    <th>Date</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="purchase in vm.purchases">
-                                                    <td>{{ purchase.id }}</td>
-                                                    <td>{{ purchase.user.name }}</td>
-                                                    <td>{{ purchase.supplier.first_name }} {{ purchase.supplier.last_name }}</td>
-                                                    <td>{{ purchase.cost_price }}</td>
-                                                    <td>{{ purchase.created_at }}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </uib-tab>
-                    </uib-tabset>
-                </div>
-                <div class="box-footer text-center">
-                    <a href="javascript:void(0)" class="uppercase">View All Products</a>
-                </div>
-            </div>
-            <!-- /Recent Inventory Activity -->
-            <!-- Latest Orders -->
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Latest Orders</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div class="table-responsive">
-                        <table class="table no-margin">
-                            <thead>
-                                <tr>
-                                    <th>Order ID</th>
-                                    <th>User</th>
-                                    <th>Customer</th>
-                                    <th>Payment Type</th>
-                                    <th>Amount</th>
-                                    <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="item in vm.sales">
-                                    <td><a href="#">OR{{item.id}}</a></td>
-                                    <td>
-                                        <span class="label label-danger" ng-show="!item.user">Hidden</span>
-                                        <a href="#" ng-show="item.user">
-                                            {{item.user.name}}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <span class="label label-danger" ng-show="!item.customer">Hidden</span>
-                                        <a href="#" ng-show="item.customer">
-                                            {{item.customer.first_name}} {{item.customer.last_name}}
-                                        </a>
-                                    </td>
-                                    <td>{{item.payment_type}}</td>
-                                    <td>{{item.selling_price}}</td>
-                                    <td>{{item.created_at}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="box-footer clearfix">
-                    <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
-                    <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
-                </div>
-            </div>
-            <!-- /Latest Orders -->
-        </div>
-        <div class="col-md-4">
-            <!-- Overview -->
-            <div class="info-box bg-green">
-                <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">TOTAL PRODUCT</span>
-                    <span class="info-box-number">{{vm.item_count}}</span>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 50%"></div>
-                    </div>
-                    <span class="progress-description">
-                        50% Increase in 30 Days
-                    </span>
-                </div>
-            </div>
-            <div class="info-box bg-blue">
-                <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">TOTAL ORDER</span>
-                    <span class="info-box-number">{{vm.order_count}}</span>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 20%"></div>
-                    </div>
-                    <span class="progress-description">
-                        20% Increase in 30 Days
-                    </span>
-                </div>
-            </div>
-            <div class="info-box bg-orange">
-                <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">TOTAL PURCHASE</span>
-                    <span class="info-box-number">{{vm.purchase_count}}</span>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 70%"></div>
-                    </div>
-                    <span class="progress-description">
-                        70% Increase in 30 Days
-                    </span>
-                </div>
-            </div>
-            <div class="info-box bg-red">
-                <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">TOTAL CUSTOMER</span>
-                    <span class="info-box-number">{{vm.customer_count}}</span>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 40%"></div>
-                    </div>
-                    <span class="progress-description">
-                        40% Increase in 30 Days
-                    </span>
-                </div>
-            </div>
-            <!-- /Overview -->
-            <!-- Sales Source Statistics -->
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Sales Status</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="chart-responsive">
-                                <canvas id="doughnut" height="200" class="chart chart-doughnut" chart-data="pieData" chart-labels="pieLabels">
-                                </canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box-footer no-padding">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li>
-                          <a href="#">
-                            In-Store Sales <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 12%</span>
-                          </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                              Online Sales <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 4%</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Sales Source Statistics -->
         </div>
     </div>
+    <!-- /Statistics -->
+
+    <!-- Recent Inventory Activity -->
+    <div class="box box-primary" id="recent_inventory_activty">
+        <div class="box-header with-border">
+            <h3 class="box-title">Recent Inventory Activity</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+        </div>
+        <div class="box-body">
+            <!--
+            @NOTE: For some reason the default boostrap tab doesn't work I don't know why yet because I'm offline right now.
+            I'll just get back to this soon.
+            @TODO: Use the default bootstrap tab
+        -->
+        <uib-tabset active="activeJustified" justified="true">
+            <uib-tab index="0" heading="Orders">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <div class="tab-pane" id="sales">
+                            <table class="table no-margin">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Staff</th>
+                                        <th>Customer</th>
+                                        <th>Grand Total</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="order in vm.orders">
+                                        <td>OR{{ order.id }}</td>
+                                        <td>{{ order.user.name }}</td>
+                                        <td>{{ order.customer.first_name }} {{ order.customer.last_name }}</td>
+                                        <td>{{ order.selling_price }}</td>
+                                        <td>{{ order.status }}</td>
+                                        <td>{{ order.created_at }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab index="1" heading="Purchased">
+                <div class="box box-danger">
+                    <div class="box-body">
+                        <div class="tab-pane" id="arrivals">
+                            <table class="table no-margin">
+                                <thead>
+                                    <tr>
+                                        <th>Purchase #</th>
+                                        <th>Staff</th>
+                                        <th>Supplier</th>
+                                        <th>Grand Total</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="purchase in vm.purchases">
+                                        <td>{{ purchase.id }}</td>
+                                        <td>{{ purchase.user.name }}</td>
+                                        <td>{{ purchase.supplier.first_name }} {{ purchase.supplier.last_name }}</td>
+                                        <td>{{ purchase.cost_price }}</td>
+                                        <td>{{ purchase.created_at }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+    <div class="box-footer text-center">
+        <a href="javascript:void(0)" class="uppercase">View All Products</a>
+    </div>
+</div>
+<!-- /Recent Inventory Activity -->
+<!-- Latest Orders -->
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">Latest Orders</h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+    </div>
+    <div class="box-body">
+        <div class="table-responsive">
+            <table class="table no-margin">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>User</th>
+                        <th>Customer</th>
+                        <th>Payment Type</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in vm.sales">
+                        <td><a href="#">OR{{item.id}}</a></td>
+                        <td>
+                            <span class="label label-danger" ng-show="!item.user">Hidden</span>
+                            <a href="#" ng-show="item.user">
+                                {{item.user.name}}
+                            </a>
+                        </td>
+                        <td>
+                            <span class="label label-danger" ng-show="!item.customer">Hidden</span>
+                            <a href="#" ng-show="item.customer">
+                                {{item.customer.first_name}} {{item.customer.last_name}}
+                            </a>
+                        </td>
+                        <td>{{item.payment_type}}</td>
+                        <td>{{item.selling_price}}</td>
+                        <td>{{item.created_at}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="box-footer clearfix">
+        <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
+        <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
+    </div>
+</div>
+<!-- /Latest Orders -->
+</div>
+<div class="col-md-4">
+    <!-- Overview -->
+    <div class="info-box bg-green">
+        <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">TOTAL PRODUCT</span>
+            <span class="info-box-number">{{vm.item_count}}</span>
+            <div class="progress">
+                <div class="progress-bar" style="width: 50%"></div>
+            </div>
+            <span class="progress-description">
+                50% Increase in 30 Days
+            </span>
+        </div>
+    </div>
+    <div class="info-box bg-blue">
+        <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">TOTAL ORDER</span>
+            <span class="info-box-number">{{vm.order_count}}</span>
+            <div class="progress">
+                <div class="progress-bar" style="width: 20%"></div>
+            </div>
+            <span class="progress-description">
+                20% Increase in 30 Days
+            </span>
+        </div>
+    </div>
+    <div class="info-box bg-orange">
+        <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">TOTAL PURCHASE</span>
+            <span class="info-box-number">{{vm.purchase_count}}</span>
+            <div class="progress">
+                <div class="progress-bar" style="width: 70%"></div>
+            </div>
+            <span class="progress-description">
+                70% Increase in 30 Days
+            </span>
+        </div>
+    </div>
+    <div class="info-box bg-red">
+        <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">TOTAL CUSTOMER</span>
+            <span class="info-box-number">{{vm.customer_count}}</span>
+            <div class="progress">
+                <div class="progress-bar" style="width: 40%"></div>
+            </div>
+            <span class="progress-description">
+                40% Increase in 30 Days
+            </span>
+        </div>
+    </div>
+    <!-- /Overview -->
+    <!-- Sales Source Statistics -->
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Sales Status</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="chart-responsive">
+                        <canvas id="doughnut" height="200" class="chart chart-doughnut" chart-data="pieData" chart-labels="pieLabels">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-footer no-padding">
+            <ul class="nav nav-pills nav-stacked">
+                <li>
+                    <a href="#">
+                        In-Store Sales <span class="pull-right text-red"><i class="fa fa-angle-down"></i> 12%</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Online Sales <span class="pull-right text-green"><i class="fa fa-angle-up"></i> 4%</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Sales Source Statistics -->
+</div>
+</div>
 </section>
