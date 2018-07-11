@@ -97,6 +97,8 @@ class PurchasesController extends Controller
     {
         $purchase = Purchases::find($id);
         $purchaseItems = PurchaseItems::where('purchase_id',$purchase->id);
+        $inventory = Inventory::where('purchase_id',$purchase->id);
+        $inventory->delete();
         $purchaseItems->delete();
         $purchase->delete();
     }
