@@ -107,40 +107,6 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             ordersId: null
         }
     })
-    .state('app.item-kits-list',{
-        url: '/item/kits/list',
-        data: {auth: true},
-        views: {
-            'main@app':{
-                template: '<item-kits-list></item-kits-list>'
-            }
-        }
-    })
-    .state('app.item-kits-add',{
-        url: '/item/kits/add',
-        data: {auth: true},
-        views: {
-            'main@app': {
-                template: '<item-kits-add></item-kits-add>'
-            }
-        },
-        params:{
-            alerts: null
-        }
-    })
-    .state('app.item-kits-edit',{
-        url: '/item/kits/:itemId',
-        data: {auth:true},
-        views:{
-            'main@app':{
-                template: '<item-kits-edit></item-kits-edit>'
-            }
-        },
-        params:{
-            alerts: null,
-            itemId: null
-        }
-    })
     .state('app.item-list',{
         url: '/item/list',
         data: {auth: true},

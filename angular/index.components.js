@@ -6,10 +6,6 @@ import {PurchaseListComponent} from './app/components/purchase-list/purchase-lis
 import {OrdersCreateComponent} from './app/components/orders-create/orders-create.component';
 import {OrdersEditComponent} from './app/components/orders-edit/orders-edit.component';
 import {OrdersListComponent} from './app/components/orders-list/orders-list.component';
-// Item Kits
-import {ItemKitsEditComponent} from './app/components/item-kits-edit/item-kits-edit.component';
-import {ItemKitsAddComponent} from './app/components/item-kits-add/item-kits-add.component';
-import {ItemKitsListComponent} from './app/components/item-kits-list/item-kits-list.component';
 // Items
 import {ItemEditComponent} from './app/components/item-edit/item-edit.component';
 import {ItemAddComponent} from './app/components/item-add/item-add.component';
@@ -56,10 +52,6 @@ angular.module('app.components')
 .component('ordersCreate', OrdersCreateComponent)
 .component('ordersEdit', OrdersEditComponent)
 .component('ordersList', OrdersListComponent)
-// Item Kits
-.component('itemKitsEdit', ItemKitsEditComponent)
-.component('itemKitsAdd', ItemKitsAddComponent)
-.component('itemKitsList', ItemKitsListComponent)
 // Items
 .component('itemEdit', ItemEditComponent)
 .component('itemAdd', ItemAddComponent)
