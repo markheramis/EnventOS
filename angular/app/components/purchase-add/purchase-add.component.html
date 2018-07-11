@@ -19,7 +19,7 @@
                             <h4>{{alert.title}}</h4>
                             <p>{{alert.msg}}</p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -34,6 +34,7 @@
                                         <thead>
                                             <tr>
                                                 <td>ID</td>
+                                                <td>Product Code</td>
                                                 <td>Product Name</td>
                                                 <td>On Hand</td>
                                                 <td></td>
@@ -42,6 +43,7 @@
                                         <tbody>
                                             <tr ng-repeat="item in vm.items | filter: vm.itemSearch | limitTo:10">
                                                 <td>{{ item.id }}</td>
+                                                <td>{{ item.item_code }}</td>
                                                 <td>
                                                     {{ item.item_name }}
                                                 </td>
@@ -65,25 +67,41 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <div class="col-md-6">
-                                <div class="form-group" ng-class="{ 'has-error': purchaseForm.supplier_id.$invalid && (vm.formSubmitted || purchaseForm.supplier_id.$touched)}">
-                                    <label for="supplier_id" class="control-label">Supplier</label>
-                                    <select class="form-control" name="supplier_id" ng-model="vm.supplier_id" required>
-                                        <option ng-repeat="supplier in vm.suppliers" value="{{supplier.id}}">
-                                            {{supplier.first_name}} {{supplier.last_name}}
-                                        </option>
-                                    </select>
-                                    <p ng-show="purchaseForm.supplier_id.$error.required && (vm.formSubmitted || purchaseForm.supplier_id.$touched)" class="help-block">supplier is required</p>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group" ng-class="{ 'has-error': purchaseForm.supplier_id.$invalid && (vm.formSubmitted || purchaseForm.supplier_id.$touched)}">
+                                            <label for="supplier_id" class="control-label">Supplier</label>
+                                            <select class="form-control" name="supplier_id" ng-model="vm.supplier_id" required>
+                                                <option ng-repeat="supplier in vm.suppliers" value="{{supplier.id}}">
+                                                    {{supplier.first_name}} {{supplier.last_name}}
+                                                </option>
+                                            </select>
+                                            <p ng-show="purchaseForm.supplier_id.$error.required && (vm.formSubmitted || purchaseForm.supplier_id.$touched)" class="help-block">supplier is required</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group" ng-class="{ 'has-error': purchaseForm.payment_type.$invalid && (vm.formSubmitted || purchaseForm.payment_type.$touched)}">
+                                            <label for="payment_type" class="control-label">Payment Type</label>
+                                            <select class="form-control" name="payment_type" ng-model="vm.payment_type" required>
+                                                <option ng-repeat="type in ['Cash','Check','Debit','Credit']" value="{{type}}">{{type}}</option>
+                                            </select>
+                                            <p ng-show="purchaseForm.payment_type.$error.required && (vm.formSubmitted || purchaseForm.payment_type.$touched)" class="help-block">Payment is required</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="total_price" class="control-label">Total Cost</label>
+                                            <input class="form-control" ng-model="vm.cost_price" readonly>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group" ng-class="{ 'has-error': purchaseForm.payment_type.$invalid && (vm.formSubmitted || purchaseForm.payment_type.$touched)}">
-                                    <label for="payment_type" class="control-label">Payment Type</label>
-                                    <select class="form-control" name="payment_type" ng-model="vm.payment_type" required>
-                                        <option ng-repeat="type in ['Cash','Check','Debit','Credit']" value="{{type}}">{{type}}</option>
-                                    </select>
-                                    <p ng-show="purchaseForm.payment_type.$error.required && (vm.formSubmitted || purchaseForm.payment_type.$touched)" class="help-block">Payment is required</p>
+                                <div class="form-group">
+                                    <label for="comments" class="control-label">Comments</label>
+                                    <textarea class="form-control" ng-model="vm.comments" name="comments" placeholder="Remarks here..." rows="5"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -91,7 +109,7 @@
                                     <thead>
                                         <tr>
                                             <td>Item</td>
-                                            <td width="20%">quantity</td>
+                                            <td width="15%">quantity</td>
                                             <td>Cost Price</td>
                                             <td>Total Cost</td>
                                             <td>Action</td>
@@ -103,24 +121,7 @@
                                                 {{item.item_name}}
                                             </td>
                                             <td>
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <!-- bug? for some reason the form submits if I used <button> here -->
-                                                        <a class="btn btn-xs btn-primary" ng-click="vm.updatePurchaseItemsQuantity(item.id, -1)">
-                                                            <i class="fa fa-angle-left"></i>
-                                                        </a>
-                                                    </span>
-                                                    <input class="form-control text-center" type="number" value="{{item.quantity}}">
-                                                    <span class="input-group-addon">
-                                                        <!-- bug? for some reason the form submits if I used <button> here -->
-                                                        <a
-                                                            class="btn btn-xs btn-primary"
-                                                            ng-click="vm.updatePurchaseItemsQuantity(item.id, 1)"
-                                                        >
-                                                            <i class="fa fa-angle-right"></i>
-                                                        </a>
-                                                    </span>
-                                                </div>
+                                                <input class="form-control text-center" ng-model="item.quantity" ng-change="vm.updateOnChange(item.id)" type="number" value="{{item.quantity}}">
                                             </td>
                                             <td>
                                                 {{item.cost_price}}
@@ -143,25 +144,10 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="comments" class="control-label">Comments</label>
-                                    <textarea class="form-control" ng-model="vm.comments" name="comments" placeholder="Remarks here..." rows="5"></textarea>
-                                </div>
+
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group" ng-class="{'has-error': (purchaseForm.amount_tendered.$invalid && (vm.formSubmitted || purchaseForm.amount_tendered.$touched)) || (vm.amount_tendered < vm.cost_price)}">
-                                    <label for="amount_tendered" class="control-label">Amount Tendered</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">$</span>
-                                        <input type="number" min="0" ng-model="vm.amount_tendered" name="amount_tendered" class="form-control" placeholder="Payed amount" required>
-                                    </div>
-                                    <p ng-show="vm.amount_tendered < vm.cost_price" class="help-block">Payment amount is not enough</p>
-                                    <p ng-show="purchaseForm.amount_tendered.$error.required && (vm.formSubmitted || purchaseForm.amount_tendered.$touched)" class="help-block">Payment amount is required</p>
-                                </div>
-                                <div class="form-group">
-                                    <label for="total_price" class="control-label">Total Cost</label>
-                                    <input class="form-control" ng-model="vm.cost_price" readonly>
-                                </div>
+
                             </div>
                         </div>
                     </div>
