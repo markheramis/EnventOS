@@ -55,31 +55,8 @@ class PurchasesController extends Controller
         $purchase->cost_price = $data['cost_price'];
         $purchase->selling_price = $data['selling_price'];
         $purchase->payment_type = $data['payment_type'];
-        $purchase->amount_tendered = $data['amount_tendered'];
         if($purchase->save())
         {
-            PurchaseItems::where('purchase_id', $purchase->id)->delete();
-            Inventory::where('purchase_id',$purchase->id)->delete();
-
-            foreach($data['items'] as $item)
-            {
-                $purchaseItem = new PurchaseItems;
-                $purchaseItem->purchase_id = $purchase->id;
-                $purchaseItem->item_id = $item['id'];
-                $purchaseItem->cost_price = $item['cost_price'];
-                $purchaseItem->selling_price = $item['selling_price'];
-                $purchaseItem->quantity = $item['quantity'];
-                $purchaseItem->save();
-
-                $inventory = new Inventory;
-                $inventory->item_id = $item['id'];
-                $inventory->user_id = Auth::user()->id;
-                $inventory->in_out_qty = $item['quantity'];
-                $inventory->remarks = 'Added from purchase transaction';
-                $inventory->purchase_id = $purchase->id;
-                $inventory->save();
-            }
-
             return response()->success('success');
         }
     }
