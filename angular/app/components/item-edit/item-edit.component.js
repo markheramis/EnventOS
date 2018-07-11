@@ -17,10 +17,8 @@ class ItemEditController{
 
     }
 
-    save(isValid)
-    {
-        if(isValid)
-        {
+    save(isValid){
+        if(isValid){
             let $state = this.$state
             this.itemData.put().then(() => {
                 let alert = {type: 'success', title: 'Success!', msg: 'Item has been updated.'}
@@ -29,9 +27,7 @@ class ItemEditController{
                 let alert = {type: 'error', title: 'Error!', msg: response.data.message}
                 $state.go($state.current,{alerts: alert})
             })
-        }
-        else
-        {
+        }else{
             this.formSubmitted = true
         }
     }

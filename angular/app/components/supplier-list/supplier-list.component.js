@@ -17,11 +17,11 @@ class SupplierListController{
             .withBootstrap()
 
             this.dtColumns = [
-              DTColumnBuilder.newColumn('id').withTitle('ID'),
-              DTColumnBuilder.newColumn('first_name').withTitle('First Name'),
-              DTColumnBuilder.newColumn('last_name').withTitle('Last Name'),
-              DTColumnBuilder.newColumn('email').withTitle('Email'),
-              DTColumnBuilder.newColumn(null).withTitle('Actions').notSortable().renderWith(actionsHtml)
+                DTColumnBuilder.newColumn('id').withTitle('ID'),
+                DTColumnBuilder.newColumn('first_name').withTitle('First Name'),
+                DTColumnBuilder.newColumn('last_name').withTitle('Last Name'),
+                DTColumnBuilder.newColumn('email').withTitle('Email'),
+                DTColumnBuilder.newColumn(null).withTitle('Actions').notSortable().renderWith(actionsHtml)
             ]
 
             this.displayTable = true
@@ -35,13 +35,13 @@ class SupplierListController{
             var buttons = ``
             buttons += `
             <a class="btn btn-xs btn-warning" ui-sref="app.supplier-edit({supplierId: ${data.id}})">
-              <i class="fa fa-edit"></i>
+                <i class="fa fa-edit"></i>
             </a>
             &nbsp
             `
             buttons += `
             <a class="btn btn-xs btn-danger" ng-click="vm.delete(${data.id})">
-            <i class="fa fa-trash-o"></i>
+                <i class="fa fa-trash-o"></i>
             </a>
             `
             return buttons

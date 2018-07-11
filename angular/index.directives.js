@@ -2,5 +2,5 @@ import { RouteBodyClassComponent } from './directives/route-bodyclass/route-body
 import { PasswordVerifyClassComponent } from './directives/password-verify/password-verify.component'
 
 angular.module('app.components')
-  .directive('routeBodyclass', RouteBodyClassComponent)
-  .directive('passwordVerify', PasswordVerifyClassComponent)
+.directive('routeBodyclass', RouteBodyClassComponent)
+.directive('passwordVerify', PasswordVerifyClassComponent)

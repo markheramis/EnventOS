@@ -11,10 +11,8 @@ class CustomerAddController{
         }
     }
 
-    save(isValid)
-    {
-        if(isValid)
-        {
+    save(isValid){
+        if(isValid){
           let customers = this.API.service('customer',this.API.all('customers'))
           let $state = this.$state
 

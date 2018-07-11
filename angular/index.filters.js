@@ -7,10 +7,10 @@ import { TrustHtmlFilter } from './filters/trust_html.filter'
 import { UcFirstFilter } from './filters/ucfirst.filter'
 
 angular.module('app.filters')
-  .filter('datemillis', DateMillisFilter)
-  .filter('capitalize', CapitalizeFilter)
-  .filter('humanreadable', HumanReadableFilter)
-  .filter('truncateCharacters', TruncatCharactersFilter)
-  .filter('truncateWords', TruncateWordsFilter)
-  .filter('trustHtml', TrustHtmlFilter)
-  .filter('ucfirst', UcFirstFilter)
+.filter('datemillis', DateMillisFilter)
+.filter('capitalize', CapitalizeFilter)
+.filter('humanreadable', HumanReadableFilter)
+.filter('truncateCharacters', TruncatCharactersFilter)
+.filter('truncateWords', TruncateWordsFilter)
+.filter('trustHtml', TrustHtmlFilter)
+.filter('ucfirst', UcFirstFilter)

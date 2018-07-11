@@ -5,19 +5,15 @@ class ItemAddController{
         this.formSubmitted = false
         this.API = API
         this.alerts = []
-        if($stateParams.alerts)
-        {
+        if($stateParams.alerts){
             this.alerts.push($stateParams.alerts)
         }
     }
 
-    save(isValid)
-    {
-        if(isValid)
-        {
+    save(isValid){
+        if(isValid){
             let items = this.API.service('item',this.API.all('items'))
             let $state = this.$state
-
             items.post({
                 item_code: this.item_code,
                 item_name: this.item_name,

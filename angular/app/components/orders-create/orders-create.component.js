@@ -4,8 +4,7 @@ class OrdersCreateController{
         this.API = API
         this.$state = $state
         this.alerts = []
-        if($stateParams.alerts)
-        {
+        if($stateParams.alerts){
             this.alerts.push($stateParams.alerts)
         }
 
@@ -28,81 +27,63 @@ class OrdersCreateController{
         })
     }
 
-    addToorderItems(item)
-    {
+    addToorderItems(item){
         let index = this.searchorderItems(item.id)
-        if(index == -1)
-        {
+        if(index == -1){
             item.quantity = 1
             item.total_cost_price = (item.quantity * Number.parseFloat(item.cost_price)).toFixed(2)
             item.total_selling_price = (item.quantity * Number.parseFloat(item.selling_price)).toFixed(2)
             this.orderItems.push(item)
-        }
-        else
-        {
+        }else{
             this.orderItems[index].quantity++
             this.orderItems[index].total_cost_price = (this.orderItems[index].quantity * Number.parseFloat(this.orderItems[index].cost_price)).toFixed(2)
             this.orderItems[index].total_selling_price = (this.orderItems[index].quantity * Number.parseFloat(this.orderItems[index].selling_price)).toFixed(2)
         }
-
         this.updateTotal()
     }
-    searchorderItems(searchId)
-    {
+    searchorderItems(searchId){
         let result = -1
         /*
          * @problem: for some reason if the search is found the function still continues the loop
          * @todo: I should probably fix this somewhere in the future, it'd be problemtic if we loop through a large array.
          */
         this.orderItems.findIndex((current,index) => {
-            if(current.id == searchId)
-            {
+            if(current.id == searchId){
                 result = index
             }
         })
         return result
     }
 
-    deleteFromorderItems(id)
-    {
+    deleteFromorderItems(id){
         let index = this.searchorderItems(id)
         this.orderItems.splice(index,1)
         this.updateTotal()
     }
 
-    updateorderItemsQuantity(id,amount)
-    {
+    updateorderItemsQuantity(id,amount){
         let index = this.searchorderItems(id)
         this.orderItems[index].quantity = this.orderItems[index].quantity + amount
-        if(this.orderItems[index].quantity <= 0)
-        {
+        if(this.orderItems[index].quantity <= 0){
             this.deleteFromorderItems(this.orderItems[index].id)
-        }
-        else
-        {
+        }else{
             this.orderItems[index].total_cost_price = (this.orderItems[index].quantity * Number.parseFloat(this.orderItems[index].cost_price)).toFixed(2)
             this.orderItems[index].total_selling_price = (this.orderItems[index].quantity * Number.parseFloat(this.orderItems[index].selling_price)).toFixed(2)
         }
         this.updateTotal()
     }
-    canAddQuantity(id)
-    {
+    canAddQuantity(id){
         let index = this.searchorderItems(id)
-        if(index == -1)
-        {
+        if(index == -1){
             return true
-        }
-        else
-        {
+        }else{
             let item = this.orderItems[index]
-            if(item.on_hand > item.quantity)
-            {
+            if(item.on_hand > item.quantity){
                 return true
             }
         }
     }
-    updateTotal()
-    {
+    updateTotal(){
         let cost_price = 0
         let selling_price = 0
         this.orderItems.forEach((item) => {
@@ -113,17 +94,14 @@ class OrdersCreateController{
         this.selling_price = selling_price.toFixed(2)
         this.updateAmountDue()
     }
-    updateAmountDue()
-    {
+    updateAmountDue(){
         if(this.payment_amount == null) this.payment = 0.00
         let amount = this.payment_amount - this.selling_price
         // this.amount_due = amount.toFixed(2) // problematic, throws error if number is negative, cannot format to x.xx or -x.xx
         this.amount_due = amount // tmp
     }
-    save(isValid)
-    {
-        if(isValid)
-        {
+    save(isValid){
+        if(isValid){
             let orders = this.API.service('order',this.API.all('orders'))
             let $state = this.$state
             orders.post({

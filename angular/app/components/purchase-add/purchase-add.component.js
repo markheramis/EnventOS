@@ -4,8 +4,7 @@ class PurchaseAddController{
         this.API = API
         this.$state = $state
         this.alerts = []
-        if($stateParams.alerts)
-        {
+        if($stateParams.alerts){
             this.alerts.push($stateParams.alerts)
         }
         this.items = []
@@ -26,18 +25,14 @@ class PurchaseAddController{
         })
     }
 
-    addToPurchaseItems(item)
-    {
+    addToPurchaseItems(item){
         let index = this.searchPurchaseItems(item.id)
-        if(index == -1)
-        {
+        if(index == -1){
             item.quantity = 1
             item.total_cost_price = (item.quantity * Number.parseFloat(item.cost_price)).toFixed(2)
             item.total_selling_price = (item.quantity * Number.parseFloat(item.selling_price)).toFixed(2)
             this.purchaseItems.push(item)
-        }
-        else
-        {
+        }else{
             let current = this.purchaseItems[index]
             current.quantity++
             current.total_cost_price = (current.quantity * Number.parseFloat(current.cost_price)).toFixed(2)
@@ -47,8 +42,7 @@ class PurchaseAddController{
         this.updateTotal()
     }
 
-    searchPurchaseItems(searchId)
-    {
+    searchPurchaseItems(searchId){
         let result = -1
         /*
          * @problem: for some reason if the search is found the function still continues the loop
@@ -60,9 +54,7 @@ class PurchaseAddController{
         })
         return result
     }
-
-    updatePurchaseItemsQuantity(id,amount)
-    {
+    updateOnChange(id){
         let index = this.searchPurchaseItems(id)
         let item = this.purchaseItems[index]
         item.quantity = item.quantity + amount
@@ -74,14 +66,12 @@ class PurchaseAddController{
         }
         this.updateTotal()
     }
-    deleteRecievingItems(id)
-    {
+    deleteRecievingItems(id){
         let index = this.searchPurchaseItems(id)
         this.purchaseItems.splice(index,1)
         this.updateTotal()
     }
-    updateTotal()
-    {
+    updateTotal(){
         let cost_price = 0
         let selling_price = 0
         this.purchaseItems.forEach((item) => {
@@ -92,10 +82,8 @@ class PurchaseAddController{
         this.selling_price = selling_price.toFixed(2)
     }
 
-    save(isValid)
-    {
-        if(isValid)
-        {
+    save(isValid){
+        if(isValid){
             let purchases = this.API.service('purchase',this.API.all('purchases'))
             let $state = this.$state
             purchases.post({

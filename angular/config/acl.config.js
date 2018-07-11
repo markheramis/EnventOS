@@ -1,12 +1,12 @@
 export function AclConfig (AclServiceProvider) {
-  'ngInject'
+    'ngInject'
 
-  var myConfig = {
-    storage: 'localStorage',
-    storageKey: 'AppAcl'
-  }
+    var myConfig = {
+        storage: 'localStorage',
+        storageKey: 'AppAcl'
+    }
 
-  /*eslint-disable */
-  AclServiceProvider.config(myConfig)
-/*eslint-enable */
+    /*eslint-disable */
+    AclServiceProvider.config(myConfig)
+    /*eslint-enable */
 }

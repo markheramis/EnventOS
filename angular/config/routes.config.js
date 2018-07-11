@@ -1,4 +1,4 @@
-export function RoutesConfig($stateProvider, $urlRouterProvider) {
+    export function RoutesConfig($stateProvider, $urlRouterProvider) {
     'ngInject'
 
     var getView = (viewName) => {
@@ -146,7 +146,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
         data: {auth: true},
         views: {
             'main@app':{
-              template: '<supplier-list></supplier-list>'
+                template: '<supplier-list></supplier-list>'
             }
         }
     })

@@ -52,8 +52,7 @@ class ItemListController{
         }
     }
 
-    delete(itemId)
-    {
+    delete(itemId){
         let API = this.API
         let $state = this.$state
         swal({
