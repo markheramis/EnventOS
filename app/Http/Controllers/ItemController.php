@@ -14,21 +14,21 @@ class ItemController extends Controller
 {
     public function getIndex(Request $request)
     {
-        if($request->query('type') !== null)
-        {
-            $items = Item::where('type',$request->query('type'))->get();
-        }
-        else
-        {
-            $items = Item::get();
-        }
+        /*
+         * Dirty solution solved
+         * @credits: Cedrick Blas @ ProgrammersDevelopers
+         */
+        $items = Item::select('items.*',DB::raw('SUM(inventories.in_out_qty) as on_hand'))
+        ->join('inventories','items.id','=','inventories.item_id')
+        ->groupBy('inventories.item_id')
+        ->havingRaw('SUM(inventories.in_out_qty) > 0')
+        ->get();
         # BEGIN DIRTY SOLUTION
-
-        foreach($items as $item)
-        {
-            $item->on_hand = $item->inventory()->sum('in_out_qty');
-        }
-        
+        #foreach($items as $item)
+        #{
+            // is there a shortcut for this? something like a single query solution?
+            #$item->on_hand = $item->inventory()->sum('in_out_qty');
+        #}
         # END DIRTY SOLUTION
         return response()->success(compact('items'));
     }
