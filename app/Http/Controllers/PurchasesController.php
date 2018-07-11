@@ -35,7 +35,7 @@ class PurchasesController extends Controller
                 $query->select('id','name');
             },
             'supplier' => function($query){
-                $query->select('id','first_name','last_name');
+                $query->select('id','first_name','last_name','company_name');
             },
             'items'
         ])
