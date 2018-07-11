@@ -4,6 +4,7 @@ class NavSidebarController {
 
     let navSideBar = this
     this.can = AclService.can
+    this.AclService = AclService
 
     ContextService.me(function (data) {
       navSideBar.userData = data
