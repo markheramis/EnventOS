@@ -24,7 +24,6 @@ class PurchasesController extends Controller
                 $query->select('id','first_name','last_name');
             }
         ])
-        ->withCount('items')
         ->get();
         return response()->success(compact('purchases'));
     }
