@@ -9,7 +9,6 @@ class PurchaseAddController{
         }
         this.items = []
         this.purchaseItems = []
-        this.amount_tendered = 0.00
         this.cost_price = 0.00
         this.selling_price = 0.00
 
@@ -30,15 +29,12 @@ class PurchaseAddController{
         if(index == -1){
             item.quantity = 1
             item.total_cost_price = (item.quantity * Number.parseFloat(item.cost_price)).toFixed(2)
-            item.total_selling_price = (item.quantity * Number.parseFloat(item.selling_price)).toFixed(2)
             this.purchaseItems.push(item)
         }else{
             let current = this.purchaseItems[index]
             current.quantity++
             current.total_cost_price = (current.quantity * Number.parseFloat(current.cost_price)).toFixed(2)
-            current.total_selling_price = (current.quantity * Number.parseFloat(current.selling_price)).toFixed(2)
         }
-
         this.updateTotal()
     }
 
@@ -57,12 +53,10 @@ class PurchaseAddController{
     updateOnChange(id){
         let index = this.searchPurchaseItems(id)
         let item = this.purchaseItems[index]
-        item.quantity = item.quantity + amount
         if(item.quantity <= 0){
             this.deleteRecievingItems(item.id)
         }else{
             item.total_cost_price = item.quantity * Number.parseFloat(item.cost_price)
-            item.total_selling_price = item.quantity * Number.parseFloat(item.selling_price)
         }
         this.updateTotal()
     }
@@ -76,10 +70,8 @@ class PurchaseAddController{
         let selling_price = 0
         this.purchaseItems.forEach((item) => {
             cost_price += Number.parseFloat(item.total_cost_price)
-            selling_price += Number.parseFloat(item.total_selling_price)
         })
         this.cost_price = cost_price.toFixed(2)
-        this.selling_price = selling_price.toFixed(2)
     }
 
     save(isValid){
@@ -90,8 +82,6 @@ class PurchaseAddController{
                 supplier_id     : this.supplier_id,
                 payment_type    : this.payment_type,
                 cost_price      : this.cost_price,
-                selling_price   : this.selling_price,
-                amount_tendered : this.amount_tendered,
                 Comments        : this.commments,
                 purchaseItems  : this.purchaseItems
             }).then(() => {
