@@ -67,7 +67,7 @@ class PurchasesController extends Controller
         $purchase->user_id = Auth::user()->id;
         $purchase->supplier_id = $request->input('supplier_id');
         $purchase->payment_type = $request->input('payment_type');
-        $purchase->amount_tendered = $request->input('amount_tendered');
+        $purchase->cost_price = $request->input('cost_price');
         $purchase->comments = $request->input('comments');
 
         if($purchase->save()){
