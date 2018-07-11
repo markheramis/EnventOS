@@ -67,7 +67,6 @@ class PurchaseAddController{
     }
     updateTotal(){
         let cost_price = 0
-        let selling_price = 0
         this.purchaseItems.forEach((item) => {
             cost_price += Number.parseFloat(item.total_cost_price)
         })
