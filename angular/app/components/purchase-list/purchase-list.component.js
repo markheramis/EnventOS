@@ -17,12 +17,10 @@ class PurchaseListController{
 
             this.dtColumns = [
                 DTColumnBuilder.newColumn('id').withTitle('ID'),
-                DTColumnBuilder.newColumn(null).withTitle('User').renderWith(userHtml),
-                DTColumnBuilder.newColumn(null).withTitle('Supplier').renderWith(supplierHtml),
-                DTColumnBuilder.newColumn('payment_type').withTitle('Payment Type'),
-                DTColumnBuilder.newColumn('items_count').withTitle('Items'),
-                DTColumnBuilder.newColumn('amount_tendered').withTitle('Amount Tendered'),
-                DTColumnBuilder.newColumn('created_at').withTitle('Date'),
+                DTColumnBuilder.newColumn(null).withTitle('Purchased By').renderWith(userHtml),
+                DTColumnBuilder.newColumn(null).withTitle('Supplier Name').renderWith(supplierHtml),
+                DTColumnBuilder.newColumn('cost_price').withTitle('Grand Total'),
+                DTColumnBuilder.newColumn('created_at').withTitle('Purchaseb Date'),
                 DTColumnBuilder.newColumn(null).withTitle('Actions').notSortable().renderWith(actionsHtml)
             ]
 
