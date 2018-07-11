@@ -21,6 +21,7 @@ class SuppliersTableSeeder extends Seeder
             'city' => 'Some City',
             'state' => 'Some State',
             'zip' => '12345',
+            'country' => 'Some Country',
             'company_name' => 'Resentein Technologies'
         ]);
         $this->create([
@@ -32,6 +33,7 @@ class SuppliersTableSeeder extends Seeder
             'city' => 'Some City',
             'state' => 'Some State',
             'zip' => '12345',
+            'country' => 'Some Country',
             'company_name' => 'Intel Corporation'
         ]);
     }

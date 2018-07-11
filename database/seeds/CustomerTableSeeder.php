@@ -20,17 +20,32 @@ class CustomerTableSeeder extends Seeder
             'city' => 'The City',
             'state' => 'The State`',
             'zip' => '123',
+            'country' => 'Some Country',
             'company_name' => 'The Company'
         ]);
         $this->create([
             'first_name' => 'Sean',
             'last_name' => 'Hanedy',
             'email' => 'sean@fox.com.us'
+            'phone' => '52352',
+            'address' => '123 Address St.',
+            'city' => 'The City',
+            'state' => 'The State`',
+            'zip' => '123',
+            'country' => 'Some Country',
+            'company_name' => 'The Company'
         ]);
         $this->create([
             'first_name' => 'Roderick',
             'last_name' => 'Pulpatine',
             'email' => 'pulpatine@senetae.gov'
+            'phone' => '52352',
+            'address' => '123 Address St.',
+            'city' => 'The City',
+            'state' => 'The State`',
+            'zip' => '123',
+            'country' => 'Some Country',
+            'company_name' => 'The Company'
         ]);
     }
     public function create($args)
