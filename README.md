@@ -53,11 +53,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - add  safe delete option to all `CRUD` features.
 - complete the permission based API access.
 - complete the permission based routing in angular.
-- sales and receiving edit should not delete its items and inventory records when updating, it should delete only if the certain item is removed from the transaction or else, just update the item's information `(quantity, price etc)` as needed.
 - add `notification` function?
 - Sales receipt via email?
-- On sales, inventory should be dealt individually when the purchased item is an item-kit.
 - Daily balance sheet
 - Ledger
-- Problematic with angular-datatable pagination, must solve in future!
 - add Global settings
+- orders and purchases who's status are `cancelled` and `processing` should be ignored in inventory.
+
+### Bug
+- All forms when submitted twice with a different transaction, it doesn't refresh.
+Bug can be recreated for example by submitting two transactions in a row in `Purchase -> New Purchases`. (Investigating)
+
+### Problematic
+- with [angular-datatables]() pagination, must solve in future!
+- with file uploads, normal form upload not applicable, must have some way to upload through [RestAngular](https://github.com/mgonto/restangular).
