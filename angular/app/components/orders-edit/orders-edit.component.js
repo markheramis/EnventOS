@@ -6,12 +6,6 @@ class OrdersEditController{
         this.formSubmitted = false
         this.alerts = []
 
-        this.items = []
-        this.orderItems = []
-        this.payment_amount = 0.00
-        this.cost_price = 0.00
-        this.selling_price = 0.00
-        this.amound_due = 0.00
         if($stateParams.alerts) this.alerts.push($stateParams.alerts)
 
         let Items = this.API.service('items')
@@ -26,122 +20,14 @@ class OrdersEditController{
 
         let Orders = this.API.service('order',API.all('orders'))
         Orders.one($stateParams.ordersId).get().then((response) => {
-            this.ordersData          = API.copy(response)
-            response                = response.plain()
-            this.payment_type       = response.data.payment_type
-            this.status             = response.data.status
-            this.customer_id        = response.data.customer_id
-            this.payment_amount     = Number.parseFloat(response.data.payment_amount)
-            this.comments           = response.data.comments
-
-            let orderItems = response.data.items
-            orderItems.forEach((saleItem) => {
-                let itemIndex = this.searchItem(saleItem.item_id)
-                let item = this.items[itemIndex]
-                this.addToorderItems(item)
-                item = this.orderItems[this.searchorderItems(item.id)]
-                item.quantity = saleItem.quantity
-                item.total_cost_price = (item.quantity * Number.parseFloat(item.cost_price)).toFixed(2)
-                item.total_selling_price = (item.quantity * Number.parseFloat(item.selling_price)).toFixed(2)
-            })
-
-
-            this.updateTotal()
+            this.orderData = API.copy(response)
         })
-    }
-
-    searchItem(id) {
-        let result = -1
-        this.items.findIndex((current,index) => {
-            if(current.id == id) result = index
-        })
-        return result
-    }
-
-    addToorderItems(item) {
-        let index = this.searchorderItems(item.id)
-        if(index == -1) {
-            item.quantity = 1
-            item.total_cost_price = (item.quantity * Number.parseFloat(item.cost_price)).toFixed(2)
-            item.total_selling_price = (item.quantity * Number.parseFloat(item.selling_price)).toFixed(2)
-            this.orderItems.push(item)
-        } else {
-            let current = this.orderItems[index]
-            current.quantity++
-            current.total_cost_price = (current.quantity * Number.parseFloat(current.cost_price)).toFixed(2)
-            current.total_selling_price = (current.quantity * Number.parseFloat(current.selling_price)).toFixed(2)
-        }
-        this.updateTotal()
-    }
-
-    searchorderItems(searchId) {
-        let result = -1
-        this.orderItems.findIndex((current,index) => {
-            if(current.id == searchId) result = index
-        })
-        return result
-    }
-
-    deleteFromorderItems(id) {
-        let index = this.searchorderItems(id)
-        this.orderItems.splice(index,1)
-        this.updateTotal()
-    }
-
-    updateorderItemsQuantity(id,amount) {
-        let index = this.searchorderItems(id)
-        this.orderItems[index].quantity = this.orderItems[index].quantity + amount
-        if(this.orderItems[index].quantity <= 0){
-            this.deleteFromorderItems(this.orderItems[index].id)
-        } else {
-            this.orderItems[index].total_cost_price = (this.orderItems[index].quantity * Number.parseFloat(this.orderItems[index].cost_price)).toFixed(2)
-            this.orderItems[index].total_selling_price = (this.orderItems[index].quantity * Number.parseFloat(this.orderItems[index].selling_price)).toFixed(2)
-        }
-        this.updateTotal()
-    }
-
-    canAddQuantity(id) {
-        let index = this.searchorderItems(id)
-        if(index == -1)
-            return true
-        else{
-            let item = this.orderItems[index]
-            if(item.on_hand > item.quantity) return true
-        }
-    }
-
-    updateTotal() {
-        let cost_price = 0
-        let selling_price = 0
-        this.orderItems.forEach((item) => {
-            cost_price = cost_price + Number.parseFloat(item.total_cost_price)
-            selling_price = selling_price + Number.parseFloat(item.total_selling_price)
-        })
-        this.cost_price = cost_price.toFixed(2)
-        this.selling_price = selling_price.toFixed(2)
-        this.updateAmountDue()
-    }
-
-    updateAmountDue() {
-        if(this.payment_amount == null) this.payment = 0.00
-        let amount = this.payment_amount - this.selling_price
-        // this.amount_due = amount.toFixed(2) // problematic, throws error if number is negative, cannot format to x.xx or -x.xx
-        this.amount_due = amount // tmp
     }
 
     save(isValid) {
         if(isValid){
             let $state = this.$state
-            this.ordersData.data.customer_id = this.customer_id
-            this.ordersData.data.cost_price = this.cost_price
-            this.ordersData.data.selling_price = this.selling_price
-            this.ordersData.data.payment_amount = this.payment_amount
-            this.ordersData.data.payment_type = this.payment_type
-            this.ordersData.data.status = this.status
-            this.ordersData.data.comments = this.comments
-            this.ordersData.data.items = this.orderItems
-
-            this.ordersData.put().then(() => {
+            this.orderData.put().then(() => {
                 let alert = {type: 'success',title:'Success!',msg:'Orders has been updated.'}
                 $state.go($state.current,{alerts:alert})
             },(response) => {

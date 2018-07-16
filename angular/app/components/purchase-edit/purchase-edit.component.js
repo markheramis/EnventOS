@@ -7,11 +7,7 @@ class PurchaseEditController{
         this.formSubmitted = false
         this.alerts = []
 
-        this.items = []
-        this.purchaseItems = []
-        this.amount_tendered = 0.00
-        this.cost_price = 0.00
-        this.selling_price = 0.00
+        this.purchaseData = null
 
         if($stateParams.alerts) this.alerts.push($stateParams.alerts)
 
@@ -19,26 +15,15 @@ class PurchaseEditController{
         Suppliers.getList().then((response) => {
             this.suppliers = response.plain()
         })
-
         let Purchase = API.service('purchase',API.all('purchases'))
         Purchase.one($stateParams.purchaseId).get().then((response) => {
             this.purchaseData      = API.copy(response)
-
-            response                = response.plain()
-            this.payment_type       = response.data.payment_type
-            this.supplier_id        = response.data.supplier_id
-            this.comments           = response.data.comments
-            this.items              = response.data.items
-
         })
     }
     save(isValid){
+        console.log('sumbitting');
         if(isValid){
             let $state = this.$state
-            this.purchaseData.data.supplier_id = this.supplier_id
-            this.purchaseData.data.cost_price = this.cost_price
-            this.purchaseData.data.comments = this.comments
-
             this.purchaseData.put().then(() => {
                 let alert = {type: 'success', title: 'Success!', msg: 'Purchase has been updated successfully'}
                 $state.go($state.current, {alerts: alert})
