@@ -73,6 +73,18 @@
             purchaseId: null
         }
     })
+    .state('app.purchase-invoice',{
+        url: '/purchase/invoice/:purchaseId',
+        data: {auth: true},
+        views: {
+            'main@app': {
+                template:'<purchase-invoice></purchase-invoice>'
+            }
+        },
+        params:{
+            purchaseId: null
+        }
+    })
     .state('app.orders-create',{
         url: '/orders/create',
         data: {auth: true},
@@ -105,6 +117,19 @@
         params:{
             alerts: null,
             ordersId: null
+        }
+    })
+    .state('app.order-invoice',{
+        url: '/orders/invoice/:orderId',
+        data: {auth: true},
+        views: {
+            'main@app' : {
+                template: '<order-invoice></order-invoice>'
+            }
+        },
+        params: {
+            alerts: null,
+            orderId: null
         }
     })
     .state('app.item-list',{

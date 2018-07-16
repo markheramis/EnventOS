@@ -63,7 +63,12 @@ class OrdersListController{
             </a>
             &nbsp
             `
-
+            buttons += `
+            <a class="btn btn-xs btn-warning" ui-sref="app.order-invoice({orderId: ${data.id}})">
+                <i class="fa fa-search-plus"></i>
+            </a>
+            &nbsp
+            `
             buttons += `
             <a class="btn btn-xs btn-danger" ng-click="vm.delete(${data.id})">
                 <i class="fa fa-trash-o"></i>

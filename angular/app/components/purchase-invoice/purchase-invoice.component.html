@@ -1,0 +1,83 @@
+<section class="content-header">
+    <h1>Purchases <small>Module description here</small></h1>
+    <ol class="breadcrumb">
+        <li><a ui-sref="app.landing"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li>Purchases</li>
+        <li class="active">Edit</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Edit Purchase</h3>
+                </div>
+                <div class="box-body">
+                    <div id="printableArea">
+                        <div class="row ">
+                            <div class="col-md-8 col-md-offset-2">
+                                <main>
+                                    <div id="details" class="clearfix">
+                                        <div id="client">
+                                            <div class="to">SUPPLIER:</div>
+                                            <h2 class="name">{{vm.purchaseData.data.supplier.company_name}}</h2>
+                                            <div class="address"><p>{{vm.purchaseData.data.supplier.address}}, {{vm.purchaseData.data.supplier.city}}, {{vm.purchaseData.data.supplier.country}}</p>
+                                            </div>
+                                            <div class="address">{{vm.purchaseData.data.supplier.phone}}</div>
+                                            <div class="email">{{vm.purchaseData.data.supplier.email}}</div>
+                                        </div>
+                                        <div id="invoice">
+                                            <h1>PUR {{vm.purchaseData.data.pur}}</h1>
+                                            <div class="date">Date of Invoice: {{vm.purchaseData.data.created_at | date: 'short'}}</div>
+                                            <div class="date">Purchase by: {{vm.purchaseData.data.user.name}}</div>
+                                        </div>
+                                    </div>
+                                    <table border="0" cellspacing="0" cellpadding="0">
+                                        <thead>
+                                            <tr>
+                                                <th class="desc">PRODUCT NAME</th>
+                                                <th class="unit text-right">UNIT PRICE</th>
+                                                <th class="qty text-right">QUANTITY</th>
+                                                <th class="total text-right ">TOTAL</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in vm.purchaseData.data.items">
+                                                <td class="desc">{{item.name}}</td>
+                                                <td class="unit">{{item.cost_price}}</td>
+                                                <td class="qty">{{item.quantity}}</td>
+                                                <td class="total">{{item.total_cost}}</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="1"></td>
+                                                <td colspan="2">SUBTOTAL</td>
+                                                <td>$ 3,500,000.00</td>
+                                            </tr>
+                                            <tr>
+
+                                            </tr>
+                                            <tr>
+                                                <td colspan="1"></td>
+                                                <td colspan="2">GRAND TOTAL</td>
+                                                <td>$ 3,500,000.00</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+
+                                </main>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <a ui-sref="app.landing" class="btn btn-default"><i class="fa fa-angle-double-left"></i> Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -59,7 +59,12 @@ class PurchaseListController{
             </a>
             &nbsp
             `
-
+            buttons += `
+            <a class="btn btn-xs btn-success" ui-sref="app.purchase-invoice({purchaseId: ${data.id}})">
+                <i class="fa fa-search-plus"></i>
+            </a>
+            &nbsp
+            `
             buttons += `
             <a class="btn btn-xs btn-danger" ng-click="vm.delete(${data.id})">
                 <i class="fa fa-trash-o"></i>

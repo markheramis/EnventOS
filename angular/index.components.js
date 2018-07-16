@@ -2,10 +2,12 @@
 import {PurchaseEditComponent} from './app/components/purchase-edit/purchase-edit.component';
 import {PurchaseAddComponent} from './app/components/purchase-add/purchase-add.component';
 import {PurchaseListComponent} from './app/components/purchase-list/purchase-list.component';
+import {PurchaseInvoiceComponent} from './app/components/purchase-invoice/purchase-invoice.component';
 // Orders
 import {OrdersCreateComponent} from './app/components/orders-create/orders-create.component';
 import {OrdersEditComponent} from './app/components/orders-edit/orders-edit.component';
 import {OrdersListComponent} from './app/components/orders-list/orders-list.component';
+import {OrderInvoiceComponent} from './app/components/order-invoice/order-invoice.component';
 // Items
 import {ItemEditComponent} from './app/components/item-edit/item-edit.component';
 import {ItemAddComponent} from './app/components/item-add/item-add.component';
@@ -48,10 +50,12 @@ angular.module('app.components')
 .component('purchaseEdit', PurchaseEditComponent)
 .component('purchaseAdd', PurchaseAddComponent)
 .component('purchaseList', PurchaseListComponent)
+.component('purchaseInvoice', PurchaseInvoiceComponent)
 // Orders
 .component('ordersCreate', OrdersCreateComponent)
 .component('ordersEdit', OrdersEditComponent)
 .component('ordersList', OrdersListComponent)
+.component('orderInvoice', OrderInvoiceComponent)
 // Items
 .component('itemEdit', ItemEditComponent)
 .component('itemAdd', ItemAddComponent)

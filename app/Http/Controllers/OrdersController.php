@@ -28,18 +28,42 @@ class OrdersController extends Controller{
         ->get();
         return response()->success(compact('orders'));
     }
-
+    /**
+     * @params $id the order id
+     * @uses App\Models\Orders;
+     */
     public function getOrder($id){
         $order = Orders::with([
             'user' => function($query){
                 $query->select('id','name');
             },
             'customer' => function($query){
-                $query->select('id','first_name','last_name');
+                $query->select(
+                    'id',
+                    'first_name',
+                    'last_name',
+                    'email',
+                    'phone',
+                    'address',
+                    'city',
+                    'state',
+                    'zip',
+                    'country',
+                    'company_name'
+                );
             },
-            'items'
+            'items' => function($query){
+                $query
+                ->join('items','order_items.item_id','=','items.id')
+                ->select('order_items.*','items.item_name as name');
+            }
         ])
         ->find($id);
+        /*
+         * add '0' (zeroes) in front of the purchase->id until it is exactly 8 characters long
+         * @credits: John David Sadia Lozano @ PD
+         */
+        $order->or = str_pad($order->id, 8, "0", STR_PAD_LEFT);
         return response()->success($order);
     }
 
@@ -53,11 +77,9 @@ class OrdersController extends Controller{
         $data = $request->input('data');
         $orders = Orders::find($data['id']);
         $orders->customer_id = $data['customer_id'];
-        $orders->cost_price = $data['cost_price'];
-        $orders->selling_price = $data['selling_price'];
         $orders->payment_type = $data['payment_type'];
         $orders->status = $data['status'];
-        $orders->payment_amount = $data['payment_amount'];
+        $orders->comments = $data['comments'];
         if($orders->save())
         {
             return response()->success('success');

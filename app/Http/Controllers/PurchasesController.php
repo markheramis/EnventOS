@@ -35,7 +35,19 @@ class PurchasesController extends Controller
                 $query->select('id','name');
             },
             'supplier' => function($query){
-                $query->select('id','first_name','last_name','company_name');
+                $query->select(
+                    'id',
+                    'first_name',
+                    'last_name',
+                    'email',
+                    'phone',
+                    'address',
+                    'city',
+                    'state',
+                    'zip',
+                    'country',
+                    'company_name'
+                );
             },
             'items' => function($query){
                 $query
@@ -44,6 +56,11 @@ class PurchasesController extends Controller
             }
         ])
         ->find($id);
+        /*
+         * add '0' (zeroes) in front of the purchase->id until it is exactly 8 characters long
+         * @credits: John David Sadia Lozano @ PD
+         */
+        $purchase->pur = str_pad($purchase->id, 8, "0", STR_PAD_LEFT);
         return response()->success($purchase);
     }
 
@@ -52,9 +69,8 @@ class PurchasesController extends Controller
         $data = $request->input('data');
         $purchase = Purchases::find($data['id']);
         $purchase->supplier_id = $data['supplier_id'];
-        $purchase->cost_price = $data['cost_price'];
-        $purchase->selling_price = $data['selling_price'];
         $purchase->payment_type = $data['payment_type'];
+        $purchase->comments = $data['comments'];
         if($purchase->save())
         {
             return response()->success('success');
