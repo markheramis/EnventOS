@@ -15,6 +15,8 @@ class ItemController extends Controller
     public function getIndex(Request $request)
     {
         $with_stock_only = $request->query('with_stock_only');
+        $sort_by = $request->query('sort_by');
+        $search = $request->query('search');
         /*
          * Dirty solution solved
          * @credits: Cedrick Blas @ ProgrammersDevelopers
