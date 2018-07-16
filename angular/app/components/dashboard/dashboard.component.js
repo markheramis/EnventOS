@@ -64,7 +64,6 @@ class DashboardController {
 
         Orders.one('status-count').get().then((response) => {
             response = response.plain()
-            console.log(response.data.complete)
             $scope.pieData[0] = response.data.complete
             $scope.pieData[1] = response.data.delivering
             $scope.pieData[2] = response.data.processing
