@@ -26,7 +26,7 @@ class CustomerTableSeeder extends Seeder
         $this->create([
             'first_name' => 'Sean',
             'last_name' => 'Hanedy',
-            'email' => 'sean@fox.com.us'
+            'email' => 'sean@fox.com.us',
             'phone' => '52352',
             'address' => '123 Address St.',
             'city' => 'The City',
@@ -38,7 +38,7 @@ class CustomerTableSeeder extends Seeder
         $this->create([
             'first_name' => 'Roderick',
             'last_name' => 'Pulpatine',
-            'email' => 'pulpatine@senetae.gov'
+            'email' => 'pulpatine@senetae.gov',
             'phone' => '52352',
             'address' => '123 Address St.',
             'city' => 'The City',
