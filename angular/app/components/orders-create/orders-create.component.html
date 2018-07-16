@@ -19,7 +19,7 @@
                             <h4>{{alert.title}}</h4>
                             <p>{{alert.msg}}</p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <div class="col-md-6">
                                 <div class="form-group" ng-class="{ 'has-error': salesForm.customer_id.$invalid && (vm.formSubmitted || salesForm.customer_id.$touched)}">
                                     <label for="customer_id" class="control-label">Customer</label>
@@ -117,26 +117,7 @@
                                                 {{item.item_name}}
                                             </td>
                                             <td>
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <button class="btn btn-xs btn-primary" ng-click="vm.updateorderItemsQuantity(item.id, -1)">
-                                                            <i class="fa fa-angle-left"></i>
-                                                        </button>
-                                                    </span>
-                                                    <input class="form-control text-center" type="number" value="{{item.quantity}}">
-                                                    <span class="input-group-addon">
-                                                        <button
-                                                            class="btn btn-xs btn-default"
-                                                            ng-click="vm.updateorderItemsQuantity(item.id, 1)"
-                                                            ng-disabled="!vm.canAddQuantity(item.id)"
-                                                            ng-class="{
-                                                                'btn-primary':  vm.canAddQuantity(item.id),
-                                                                'btn-danger': !vm.canAddQuantity(item.id)
-                                                            }">
-                                                            <i class="fa fa-angle-right"></i>
-                                                        </button>
-                                                    </span>
-                                                </div>
+                                                <input class="form-control text-center" type="number" ng-change="vm.updateOnChange(item.id)" ng-model="item.quantity" max="{{item.quantity}}">
                                             </td>
                                             <td>
                                                 {{item.selling_price}}
