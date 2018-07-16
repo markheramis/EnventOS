@@ -44,6 +44,7 @@ class RolesAndPermissionsSeeder extends Seeder {
     }
 
     private function createPermissions() {
+        ## USER PERMISSIONS
         $this->permissions['user']['create'] = Permission::create([
             'name' => 'Create User',
             'slug' => 'create.user',
@@ -64,7 +65,7 @@ class RolesAndPermissionsSeeder extends Seeder {
             'slug' => 'view.user',
             'description' => 'Can view users',
         ]);
-
+        ## ROLE PERMISSIONS
         $this->permissions['roles']['create'] = Permission::create([
             'name' => 'Create Role',
             'slug' => 'create.role',
@@ -85,6 +86,7 @@ class RolesAndPermissionsSeeder extends Seeder {
             'slug' => 'view.role',
             'description' => 'Can view Roles',
         ]);
+        # PERMISSION PERMISSIONS
         $this->permissions['permission']['create'] = Permission::create([
             'name' => 'Create Permission',
             'slug' => 'create.permission',
@@ -105,6 +107,49 @@ class RolesAndPermissionsSeeder extends Seeder {
             'slug' => 'view.permission',
             'description' => 'Can view permissions',
         ]);
+        ## SUPPLIER PERMISSIONS
+        $this->permissions['supplier']['create'] = Permission::create([
+            'name' => 'Create supplier',
+            'slug' => 'create.supplier',
+            'description' => 'Can create supplier',
+        ]);
+        $this->permissions['supplier']['update'] = Permission::create([
+            'name' => 'Update supplier',
+            'slug' => 'update.supplier',
+            'description' => 'Can update supplier',
+        ]);
+        $this->permissions['supplier']['delete'] = Permission::create([
+            'name' => 'Delete supplier',
+            'slug' => 'delete.supplier',
+            'description' => 'Can delete supplier',
+        ]);
+        $this->permissions['supplier']['view'] = Permission::create([
+            'name' => 'View supplier',
+            'slug' => 'view.supplier',
+            'description' => 'Can view supplier',
+        ]);
+        ## CUSTOMER PERMISSIONS
+        $this->permissions['customer']['create'] = Permission::create([
+            'name' => 'Create customer',
+            'slug' => 'create.customer',
+            'description' => 'Can create customer',
+        ]);
+        $this->permissions['customer']['update'] = Permission::create([
+            'name' => 'Update customer',
+            'slug' => 'update.customer',
+            'description' => 'Can update customer',
+        ]);
+        $this->permissions['customer']['delete'] = Permission::create([
+            'name' => 'Delete customer',
+            'slug' => 'delete.customer',
+            'description' => 'Can delete customer',
+        ]);
+        $this->permissions['customer']['view'] = Permission::create([
+            'name' => 'View customer',
+            'slug' => 'view.customer',
+            'description' => 'Can view customer',
+        ]);
+        ## PRODUCT PERMISSIONS
         $this->permissions['product']['create'] = Permission::create([
             'name' => 'Create products',
             'slug' => 'create.product',
@@ -125,6 +170,48 @@ class RolesAndPermissionsSeeder extends Seeder {
             'slug' => 'view.products',
             'description' => 'Can view products',
         ]);
+        ## SALES PERMISSIONS
+        $this->permissions['order']['create'] = Permission::create([
+            'name' => 'Create order',
+            'slug' => 'create.order',
+            'description' => 'Can create order',
+        ]);
+        $this->permissions['order']['update'] = Permission::create([
+            'name' => 'Update order',
+            'slug' => 'update.order',
+            'description' => 'Can update order',
+        ]);
+        $this->permissions['order']['delete'] = Permission::create([
+            'name' => 'Delete order',
+            'slug' => 'delete.order',
+            'description' => 'Can delete order',
+        ]);
+        $this->permissions['order']['view'] = Permission::create([
+            'name' => 'View order',
+            'slug' => 'view.order',
+            'description' => 'Can view order',
+        ]);
+        ## PURCHASE PERMISSIONS
+        $this->permissions['purchase']['create'] = Permission::create([
+            'name' => 'Create purchase',
+            'slug' => 'create.purchase',
+            'description' => 'Can create purchase',
+        ]);
+        $this->permissions['purchase']['update'] = Permission::create([
+            'name' => 'Update purchase',
+            'slug' => 'update.purchase',
+            'description' => 'Can update purchase',
+        ]);
+        $this->permissions['purchase']['delete'] = Permission::create([
+            'name' => 'Delete purchase',
+            'slug' => 'delete.purchase',
+            'description' => 'Can delete purchase',
+        ]);
+        $this->permissions['purchase']['view'] = Permission::create([
+            'name' => 'View purchase',
+            'slug' => 'view.purchase',
+            'description' => 'Can view purchase',
+        ]);
     }
 
     private function attachPermissionsToRoles() {
@@ -143,11 +230,6 @@ class RolesAndPermissionsSeeder extends Seeder {
         $this->roles['admin.super']->attachPermission($this->permissions['permission']['update']);
         $this->roles['admin.super']->attachPermission($this->permissions['permission']['delete']);
         $this->roles['admin.super']->attachPermission($this->permissions['permission']['view']);
-
-        $this->roles['admin.super']->attachPermission($this->permissions['product']['create']);
-        $this->roles['admin.super']->attachPermission($this->permissions['product']['update']);
-        $this->roles['admin.super']->attachPermission($this->permissions['product']['delete']);
-        $this->roles['admin.super']->attachPermission($this->permissions['product']['view']);
     }
 
     private function attachRolesToUsers() {
