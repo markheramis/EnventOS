@@ -8,7 +8,7 @@ require('./tasks/ngHtml2Js.task.js')
 require('laravel-elixir-artisan-serve')
 
 if (!elixir.config.production) {
-  require('./tasks/phpcs.task.js')
+    require('./tasks/phpcs.task.js')
 }
 /*
  |--------------------------------------------------------------------------
@@ -22,35 +22,35 @@ if (!elixir.config.production) {
  */
 
 elixir(function (mix) {
-  var jsOutputFolder = config.js.outputFolder
-  var cssOutputFolder = config.css.outputFolder
-  var fontsOutputFolder = config.fonts.outputFolder
-  var buildPath = config.buildPath
+    var jsOutputFolder = config.js.outputFolder
+    var cssOutputFolder = config.css.outputFolder
+    var fontsOutputFolder = config.fonts.outputFolder
+    var buildPath = config.buildPath
 
-  var assets = [
-      'public/js/final.js',
-      'public/css/final.css'
+    var assets = [
+        'public/js/final.js',
+        'public/css/final.css'
     ],
     scripts = [
-      './public/js/vendor.js',
-      './public/js/partials.js',
-      './public/js/app.js',
-      './public/dist/js/app.js'
+        './public/js/vendor.js',
+        './public/js/partials.js',
+        './public/js/app.js',
+        './public/dist/js/app.js'
     ],
     styles = [
-      './public/css/vendor.css',
-      './public/css/app.css'
+        './public/css/vendor.css',
+        './public/css/app.css'
     ],
     karmaJsDir = [
-      jsOutputFolder + '/vendor.js',
-      'node_modules/angular-mocks/angular-mocks.js',
-      'node_modules/ng-describe/dist/ng-describe.js',
-      jsOutputFolder + '/partials.js',
-      jsOutputFolder + '/app.js',
-      'tests/angular/**/*.spec.js'
-  ]
+        jsOutputFolder + '/vendor.js',
+        'node_modules/angular-mocks/angular-mocks.js',
+        'node_modules/ng-describe/dist/ng-describe.js',
+        jsOutputFolder + '/partials.js',
+        jsOutputFolder + '/app.js',
+        'tests/angular/**/*.spec.js'
+    ]
 
-  mix
+    mix
     .bower()
     .angular('./angular/')
     .ngHtml2Js('./angular/**/*.html')
@@ -58,19 +58,22 @@ elixir(function (mix) {
     .sass('./angular/**/*.scss', 'public/css')
     .styles(styles, './public/css/final.css')
     .version(assets)
+    .karma({
+        jsDir: karmaJsDir
+    })
     .artisanServe({
         php_path: config.phpPath, // in windows, you need to add php to environment path.
+        //php_args: '-dxdebug.remote_autostart',
+        php_debug: true,
         artisan_path: './artisan',
         host: '127.0.0.1',
         port: 8000,
         show_requests: true
     })
     .browserSync({
-      proxy: 'localhost:8000'
+        proxy: 'localhost:8000'
     })
-    .karma({
-      jsDir: karmaJsDir
-    })
-  mix
+
+    mix
     .copy(fontsOutputFolder, buildPath + '/fonts')
 })
