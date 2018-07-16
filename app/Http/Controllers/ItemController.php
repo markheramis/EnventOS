@@ -14,6 +14,7 @@ class ItemController extends Controller
 {
     public function getIndex(Request $request)
     {
+        $with_stock_only = $request->query('with_stock_only');
         /*
          * Dirty solution solved
          * @credits: Cedrick Blas @ ProgrammersDevelopers
@@ -21,7 +22,17 @@ class ItemController extends Controller
         $items = Item::select('items.*',DB::raw('SUM(inventories.in_out_qty) as on_hand'))
         ->join('inventories','items.id','=','inventories.item_id')
         ->groupBy('inventories.item_id')
-        ->havingRaw('SUM(inventories.in_out_qty) > 0')
+        ->when($with_stock_only, function($query) use ($with_stock_only) {
+            return $query->havingRaw('SUM(inventories.in_out_qty) > 0');
+        })
+        ->when($sort_by, function($query) use ($sort_by) {
+            return $query->orderBy($sort_by,'desc');
+        })
+        ->when($search, function($query) use ($search){
+            return $query
+                ->where('item_code','like','%'.$search.'%')
+                ->orWhere('item_name','like','%'.$search.'%');
+        })
         ->get();
         # BEGIN DIRTY SOLUTION
         #foreach($items as $item)

@@ -17,7 +17,9 @@ class OrdersCreateController{
 
 
         let Items = this.API.service('items')
-        Items.getList().then((response) => {
+        Items.getList({
+          with_stock_only: true
+        }).then((response) => {
             this.items = response.plain()
         })
 
