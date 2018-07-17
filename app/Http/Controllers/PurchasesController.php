@@ -79,44 +79,56 @@ class PurchasesController extends Controller
 
     public function postPurchase(Request $request)
     {
-        $purchase = new Purchases;
-        $purchase->user_id = Auth::user()->id;
-        $purchase->supplier_id = $request->input('supplier_id');
-        $purchase->payment_type = $request->input('payment_type');
-        $purchase->cost_price = $request->input('cost_price');
-        $purchase->comments = $request->input('comments');
+        try{
+            $purchase = new Purchases;
+            $purchase->user_id = Auth::user()->id;
+            $purchase->supplier_id = $request->input('supplier_id');
+            $purchase->payment_type = $request->input('payment_type');
+            $purchase->cost_price = $request->input('cost_price');
+            $purchase->comments = $request->input('comments');
 
-        if($purchase->save()){
+            if($purchase->save()){
 
-            foreach($request->input('purchaseItems') as $item){
-                $purchaseItem = new PurchaseItems;
-                $purchaseItem->purchase_id = $purchase->id;
-                $purchaseItem->item_id = $item['id'];
-                $purchaseItem->cost_price = $item['cost_price'];
-                $purchaseItem->quantity = $item['quantity'];
-                $purchaseItem->total_cost = $item['total_cost_price'];
-                $purchaseItem->save();
+                foreach($request->input('purchaseItems') as $item){
+                    $purchaseItem = new PurchaseItems;
+                    $purchaseItem->purchase_id = $purchase->id;
+                    $purchaseItem->item_id = $item['id'];
+                    $purchaseItem->cost_price = $item['cost_price'];
+                    $purchaseItem->quantity = $item['quantity'];
+                    $purchaseItem->total_cost = $item['total_cost_price'];
+                    $purchaseItem->save();
 
-                $inventory = new Inventory;
-                $inventory->item_id = $item['id'];
-                $inventory->user_id = Auth::user()->id;
-                $inventory->in_out_qty = $item['quantity'];
-                $inventory->remarks = 'Added from purchase transaction (#' . $purchase->id . ')';
-                $inventory->purchase_id = $purchase->id;
-                $inventory->save();
+                    $inventory = new Inventory;
+                    $inventory->item_id = $item['id'];
+                    $inventory->user_id = Auth::user()->id;
+                    $inventory->in_out_qty = $item['quantity'];
+                    $inventory->remarks = 'Added from purchase transaction (#' . $purchase->id . ')';
+                    $inventory->purchase_id = $purchase->id;
+                    $inventory->save();
+                }
+                return response()->success('successs');
             }
-            return response()->success('successs');
+        }
+        catch(\Exception $ex)
+        {
+            return respone()->error('Failed to create purchase');
         }
     }
 
     public function deletePurchase($id)
     {
-        $purchase = Purchases::find($id);
-        $purchaseItems = PurchaseItems::where('purchase_id',$purchase->id);
-        $inventory = Inventory::where('purchase_id',$purchase->id);
-        $inventory->delete();
-        $purchaseItems->delete();
-        $purchase->delete();
+        try{
+            $purchase = Purchases::find($id);
+            $purchaseItems = PurchaseItems::where('purchase_id',$purchase->id);
+            $inventory = Inventory::where('purchase_id',$purchase->id);
+            $inventory->delete();
+            $purchaseItems->delete();
+            $purchase->delete();
+        }
+        catch(\Exception $ex)
+        {
+            return response()->error('Failed to delete purchase');
+        }
     }
 
     public function getCount(Request $request)

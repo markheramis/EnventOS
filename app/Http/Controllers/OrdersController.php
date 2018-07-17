@@ -122,12 +122,18 @@ class OrdersController extends Controller{
 
     public function deleteOrder($id)
     {
-        $order = Orders::find($id);
-        $orderItems = OrderItems::where('order_id', $order->id);
-        $inventory = Inventory::where('order_id',$order->id);
-        $orderItems->delete();
-        $inventory->delete();
-        $order->delete();
+        try{
+            $order = Orders::find($id);
+            $orderItems = OrderItems::where('order_id', $order->id);
+            $inventory = Inventory::where('order_id',$order->id);
+            $orderItems->delete();
+            $inventory->delete();
+            $order->delete();
+        }
+        catch(\Exception $ex)
+        {
+            return response()->error('Failed to delete order');
+        }
     }
 
     public function getStatusCount()
