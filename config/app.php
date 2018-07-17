@@ -213,6 +213,7 @@ return [
         'Input'     => Illuminate\Support\Facades\Input::class,
         'JWTAuth'   => Tymon\JWTAuth\Facades\JWTAuth::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'ChannelLog' => App\Contracts\Facades\ChannelLog::class,
     ],
 
 ];
