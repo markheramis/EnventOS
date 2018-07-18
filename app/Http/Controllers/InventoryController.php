@@ -8,9 +8,11 @@ use DateInterval;
 use App\Http\Requests;
 use App\Models\Inventory;
 
+use App\Http\Requests\inventoryGetAllRequest;
+
 class InventoryController extends Controller
 {
-    public function getIndex(Request $request)
+    public function getIndex(inventoryGetAllRequest $request)
     {
         $limit = ($request->query('limit'))?$request->query('limit'): 10;
         $inventory = Inventory::limit($limit)

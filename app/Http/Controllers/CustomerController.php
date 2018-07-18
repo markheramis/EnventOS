@@ -5,21 +5,29 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+
+use App\Http\Requests\customerGetAllRequest;
+use App\Http\Requests\customerGetSingleRequest;
+use App\Http\Requests\customerCreateRequest;
+use App\Http\Requests\customerUpdateRequest;
+use App\Http\Requests\customerDeleteRequest;
+
 use App\Models\Customer;
+
 
 class CustomerController extends Controller
 {
-    public function getIndex(){
+    public function getIndex(customerGetAllRequest $request){
         $customers = Customer::all();
         return response()->success(compact('customers'));
     }
 
-    public function getCustomer($id){
+    public function getCustomer(customerGetSingleRequest $request, $id){
         $customer = Customer::find($id);
         return response()->success($customer);
     }
 
-    public function postCustomer(Request $request){
+    public function postCustomer(customerCreateRequest $request){
         try{
             $customer = new Customer;
             $customer->first_name = $request->input('first_name');
@@ -41,7 +49,7 @@ class CustomerController extends Controller
         }
     }
 
-    public function putCustomer(Request $request){
+    public function putCustomer(customerUpdateRequest $request){
         try{
             $data = $request->input('data');
             $customer = Customer::find($data['id']);
@@ -64,7 +72,7 @@ class CustomerController extends Controller
         }
     }
 
-    public function deleteCustomer($id){
+    public function deleteCustomer(customerDeleteRequest $request, $id){
         try{
             $customer = Customer::find($id);
             if($customer->delete()){

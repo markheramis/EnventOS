@@ -10,12 +10,18 @@ use App\Models\Item;
 use App\Models\ItemKitItem;
 use App\Models\Inventory;
 
+use App\Http\Requests\itemGetAllRequest;
+use App\Http\Requests\itemGetSingleRequest;
+use App\Http\Requests\itemCreateRequest;
+use App\Http\Requests\itemUpdateRequest;
+use App\Http\Requests\itemDeleteRequest;
+
 class ItemController extends Controller
 {
     /*
      * Pagination problem solved thanks to Bernard Jason Berras for the link
      */
-    public function getIndex(Request $request)
+    public function getIndex(itemGetAllRequest $request)
     {
         $with_stock_only = $request->query('with_stock_only');
         $sort_by = $request->query('sort_by');
@@ -49,7 +55,7 @@ class ItemController extends Controller
         return response()->success(compact('items'));
     }
 
-    public function getItem(Request $request, $id)
+    public function getItem(itemGetSingleRequest $request, $id)
     {
         $item = Item::find($id);
         if(!empty($item))
@@ -63,7 +69,7 @@ class ItemController extends Controller
 
     }
 
-    public function postItem(Request $request)
+    public function postItem(itemCreateRequest $request)
     {
         try
         {
@@ -96,7 +102,7 @@ class ItemController extends Controller
         }
     }
 
-    public function putItem(Request $request)
+    public function putItem(itemUpdateRequest $request)
     {
         try{
 
@@ -120,7 +126,7 @@ class ItemController extends Controller
     }
 
 
-    public function deleteItem(Request $request, $id)
+    public function deleteItem(itemDeleteRequest $request, $id)
     {
         try{
 

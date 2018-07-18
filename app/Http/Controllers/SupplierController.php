@@ -7,21 +7,27 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Supplier;
 
+use App\Http\Requests\supplierGetAllRequest;
+use App\Http\Requests\supplierGetSingleRequest;
+use App\Http\Requests\supplierCreateRequest;
+use App\Http\Requests\supplierUpdateRequest;
+use App\Http\Requests\supplierDeleteRequest;
+
 class SupplierController extends Controller
 {
-    public function getIndex()
+    public function getIndex(supplierGetAllRequest $request)
     {
         $suppliers = Supplier::all();
         return response()->success(compact('suppliers'));
     }
 
-    public function getSupplier($id)
+    public function getSupplier(supplierGetSingleRequest $request, $id)
     {
         $supplier = Supplier::find($id);
         return response()->success($supplier);
     }
 
-    public function postSupplier(Request $request)
+    public function postSupplier(supplierCreateRequest $request)
     {
         try{
             $supplier = new Supplier;
@@ -45,7 +51,7 @@ class SupplierController extends Controller
         }
     }
 
-    public function putSupplier(Request $request)
+    public function putSupplier(supplierUpdateRequest $request)
     {
         $data = $request->input('data');
         try{
@@ -72,7 +78,7 @@ class SupplierController extends Controller
 
     }
 
-    public function deleteSupplier($id)
+    public function deleteSupplier(supplierDeleteRequest $request, $id)
     {
         try{
             $supplier = Supplier::find($id);
