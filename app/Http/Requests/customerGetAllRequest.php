@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Response;
+
 
 class customerGetAllRequest extends Request
 {
@@ -26,5 +28,10 @@ class customerGetAllRequest extends Request
         return [
             //
         ];
+    }
+
+    public function forbiddenResponse()
+    {
+        return Response::make('Permission denied foo!', 403);
     }
 }
