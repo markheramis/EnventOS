@@ -4,6 +4,8 @@
 ## Project Objective
 To create a robust and easily deployable open-source solution for inventory and POS management software. It is aimed to be easy to maintain, easy to configure, secure and light-weight (hopefully).
 
+[Database structure is here](https://app.sqldbm.com/MySQL/Share/TRrCk2dDomq20EwXxt3sAUGFrngIE8md_DYjF4jNYw0)
+
 ## Screenshots
 Coming soon
 
