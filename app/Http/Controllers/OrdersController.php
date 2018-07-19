@@ -155,7 +155,9 @@ class OrdersController extends Controller{
     {
         $user_id = ($request->query('user_id'))? $request->query('user_id') : false;
         $customer_id = ($request->query('customer_id')) ? $request->query('customer_id') : false;
-
+        if(!$user_id && !$customer_id){
+            response()->error('no user or customer provided');
+        }
         $count = Orders::when($user_id,function($query) use($user_id) {
             $query->where('user_id',$user_id);
         })
