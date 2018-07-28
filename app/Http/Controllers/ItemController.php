@@ -10,9 +10,19 @@ use App\Models\Item;
 use App\Models\ItemKitItem;
 use App\Models\Inventory;
 
+use App\Http\Requests\item\createRequest;
+use App\Http\Requests\item\deleteRequest;
+use App\Http\Requests\item\updateRequest;
+use App\Http\Requests\item\viewRequest;
+
 class ItemController extends Controller
 {
-    public function getIndex(Request $request)
+    /**
+     * @param App\Http\Requests\item\viewRequest $request
+     * @uses App\Models\Item
+     * @todo apply safe delete, query only those who are not safe deleted
+     */
+    public function getIndex(viewRequest $request)
     {
         $with_stock_only = $request->query('with_stock_only');
         $sort_by = $request->query('sort_by');
@@ -45,8 +55,12 @@ class ItemController extends Controller
         # END DIRTY SOLUTION
         return response()->success(compact('items'));
     }
-
-    public function getItem($id)
+    /**
+     * @param App\Http\Requests\item\viewRequest $request
+     * @uses App\Models\Item
+     * @todo apply safe delete feature
+     */
+    public function getItem(viewRequest $request, $id)
     {
         $item = Item::find($id);
         if(!empty($item))
@@ -58,8 +72,12 @@ class ItemController extends Controller
             return response()->error('No item found');
         }
     }
-
-    public function postItem(Request $request)
+    /**
+     * @param App\Http\Requests\item\createRequest $request
+     * @uses App\Models\Item
+     * @uses App\Models\Inventory
+     */
+    public function postItem(createRequest $request)
     {
         $item = new Item;
         $item->item_code = $request->input('item_code');
@@ -89,8 +107,11 @@ class ItemController extends Controller
             return response()->error('Error in saving item.');
         }
     }
-
-    public function putItem(Request $request)
+    /**
+     * @param App\Http\Requests\item\updateRequest $request
+     * @uses App\Models\Item
+     */
+    public function putItem(updateRequest $request)
     {
         $data = $request->input('data');
         $item = Item::find($data['id']);
@@ -110,8 +131,12 @@ class ItemController extends Controller
         }
     }
 
-
-    public function deleteItem($id)
+    /**
+     * @param App\Http\Requests\item\deleteRequest $request
+     * @uses App\Models\Item
+     * @todo Apply safe delete
+     */
+    public function deleteItem(deleteRequest $request, $id)
     {
         $item = Item::find($id);
         if($item->delete())
@@ -124,8 +149,11 @@ class ItemController extends Controller
         }
     }
 
-
-    public function getCount(Request $request)
+    /**
+     * @param App\Http\Requests\item\viewRequest $request
+     * @uses App\Models\Item
+     */
+    public function getCount(viewRequest $request)
     {
         $type = ($request->query('type')) ? $request->query('type') : false;
         $count = Item::when($type,function($query) use ($type) {

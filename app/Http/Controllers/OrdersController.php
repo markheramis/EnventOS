@@ -10,12 +10,19 @@ use App\Models\Orders;
 use App\Models\OrderItems;
 use App\Models\Inventory;
 
+use App\Http\Requests\order\createRequest;
+use App\Http\Requests\order\deleteRequest;
+use App\Http\Requests\order\updateRequest;
+use App\Http\Requests\order\viewRequest;
 /*
  * @todo must add a safe delete option
  */
 class OrdersController extends Controller{
-
-    public function getIndex(Request $request){
+    /**
+     * @param App\Http\Request\order\viewRequest $request
+     * @uses App\Models\Orders
+     */
+    public function getIndex(viewRequest $request){
         $orders = Orders::with([
             'user' => function($query){
                 $query->select('id','name');
@@ -29,10 +36,11 @@ class OrdersController extends Controller{
         return response()->success(compact('orders'));
     }
     /**
-     * @params $id the order id
+     * @param App\Http\Request\order\viewRequest $request
+     * @param int $id the order transacction's id.
      * @uses App\Models\Orders;
      */
-    public function getOrder($id){
+    public function getOrder(viewRequest $request, $id){
         $order = Orders::with([
             'user' => function($query){
                 $query->select('id','name');
@@ -68,11 +76,10 @@ class OrdersController extends Controller{
     }
 
     /**
-     * @param $request - the HTTP request data
-     * @note I am not sure if this is the most efficient way to go about editing a transaction, the thing is, i made a return transaction before i update the new transaction on the inventory table.
-     * in short, I've made the customer return the purchased items first before we can make the edit.
+     * @param App\Http\Request\order\updateRequest $request - the HTTP request data
+     * @uses App\Models\Orders
      */
-    public function putOrder(Request $request)
+    public function putOrder(updateRequest $request)
     {
         $data = $request->input('data');
         $orders = Orders::find($data['id']);
@@ -85,8 +92,13 @@ class OrdersController extends Controller{
             return response()->success('success');
         }
     }
-
-    public function postOrder(Request $request)
+    /**
+     * @param App\Http\Requests\order\createRequest $request
+     * @uses App\Models\Orders
+     * @uses App\Models\OrderItems
+     * @uses App\Models\Inventory
+     */
+    public function postOrder(createRequest $request)
     {
         $orders = new Orders;
         $orders->customer_id = $request->input('customer_id');
@@ -99,7 +111,7 @@ class OrdersController extends Controller{
         $orders->comments = $request->input('comments');
         if($orders->save()){
             foreach($request->input('orderItems') as $item){
-                $orderItems = new orderItems;
+                $orderItems = new OrderItems;
                 $orderItems->order_id = $orders->id;
                 $orderItems->item_id = $item['id'];
                 $orderItems->cost_price = $item['cost_price'];
@@ -119,8 +131,14 @@ class OrdersController extends Controller{
             return response()->success('success');
         }
     }
-
-    public function deleteOrder($id)
+    /**
+     * @param App\Http\Requests\order\deleteRequest $request
+     * @param int $id
+     * @uses App\Models\Orders
+     * @uses App\Models\OrderItems
+     * @uses App\Models\Inventory
+     */
+    public function deleteOrder(deleteRequest $request, $id)
     {
         $order = Orders::find($id);
         $orderItems = OrderItems::where('order_id', $order->id);
@@ -129,8 +147,11 @@ class OrdersController extends Controller{
         $inventory->delete();
         $order->delete();
     }
-
-    public function getStatusCount()
+    /**
+     * @param App\Http\Requests\order\viewRequest $request
+     * @uses App\Models\Orders
+     */
+    public function getStatusCount(viewRequest $request)
     {
         $completed = Orders::where('status','complete')->count();
         $delivering = Orders::where('status','delivering')->count();
@@ -144,8 +165,11 @@ class OrdersController extends Controller{
             'cancelled' => $cancelled
         ]);
     }
-
-    public function getCount(Request $request)
+    /**
+     * @param App\Http\Requests\order\viewRequest $request
+     * @uses App\Models\Orders
+     */
+    public function getCount(viewRequest $request)
     {
         $user_id = ($request->query('user_id'))? $request->query('user_id') : false;
         $customer_id = ($request->query('customer_id')) ? $request->query('customer_id') : false;

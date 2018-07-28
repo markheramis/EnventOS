@@ -7,21 +7,36 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Supplier;
 
+use App\Http\Requests\supplier\createRequest;
+use App\Http\Requests\supplier\deleteRequest;
+use App\Http\Requests\supplier\updateRequest;
+use App\Http\Requests\supplier\viewRequest;
+
 class SupplierController extends Controller
 {
-    public function getIndex()
+    /**
+     * @param App\Http\Requests\supplier\viewRequest $request
+     * @uses App\Models\Supplier
+     */
+    public function getIndex(viewRequest $request)
     {
         $suppliers = Supplier::all();
         return response()->success(compact('suppliers'));
     }
-
-    public function getSupplier($id)
+    /**
+     * @param App\Http\Requests\supplier\viewRequest $request
+     * @uses App\Models\Supplier
+     */
+    public function getSupplier(viewRequest $request, $id)
     {
         $supplier = Supplier::find($id);
         return response()->success($supplier);
     }
-
-    public function postSupplier(Request $request)
+    /**
+     * @param App\Http\Requests\supplier\createRequest $request
+     * @uses App\Models\Supplier
+     */
+    public function postSupplier(createRequest $request)
     {
         $supplier = new Supplier;
         $supplier->first_name = $request->input('first_name');
@@ -38,8 +53,11 @@ class SupplierController extends Controller
             return response()->success('success');
         }
     }
-
-    public function putSupplier(Request $request)
+    /**
+     * @param App\Http\Requests\supplier\updateRequest $request
+     * @uses App\Models\Supplier
+     */
+    public function putSupplier(updateRequest $request)
     {
         $data = $request->input('data');
         $supplier = Supplier::find($data['id']);
@@ -57,8 +75,11 @@ class SupplierController extends Controller
             return response()->success('success');
         }
     }
-
-    public function deleteSupplier($id)
+    /**
+     * @param App\Http\Requests\supplier\deleteRequest $request
+     * @uses App\Models\Supplier
+     */
+    public function deleteSupplier(deleteRequest $request, $id)
     {
         $supplier = Supplier::find($id);
         $supplier->delete();

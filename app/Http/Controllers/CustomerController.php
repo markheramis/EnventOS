@@ -6,20 +6,38 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Models\Customer;
+use App\Http\Requests\customerCreateRequest;
+use App\Http\Requests\customerUpdateRequest;
+
+
+use App\Http\Requests\customer\createRequest;
+use App\Http\Requests\customer\deleteRequest;
+use App\Http\Requests\customer\updateRequest;
+use App\Http\requests\customer\viewRequest;
 
 class CustomerController extends Controller
 {
-    public function getIndex(){
+    /**
+     * @param App\Http\requests\customer\viewRequest $request
+     * @uses App\Models\Customer
+     */
+    public function getIndex(viewRequest $request){
         $customers = Customer::all();
         return response()->success(compact('customers'));
     }
-
-    public function getCustomer($id){
+    /**
+     * @param App\Http\requests\customer\viewRequest $request
+     * @uses App\Models\Customer
+     */
+    public function getCustomer(viewRequest $request, $id){
         $customer = Customer::find($id);
         return response()->success($customer);
     }
-
-    public function postCustomer(Request $request){
+    /**
+     * @param App\Http\requests\customer\createRequest $request
+     * @uses App\Models\Customer
+     */
+    public function postCustomer(createRequest $request){
         $customer = new Customer;
         $customer->first_name = $request->input('first_name');
         $customer->last_name = $request->input('last_name');
@@ -34,8 +52,11 @@ class CustomerController extends Controller
             return response()->success('success');
         }
     }
-
-    public function putCustomer(Request $request){
+    /**
+     * @param App\Http\requests\customer\updateRequest $request
+     * @uses App\Models\Customer
+     */
+    public function putCustomer(updateRequest $request){
         $data = $request->input('data');
         $customer = Customer::find($data['id']);
         $customer->first_name = $data['first_name'];
@@ -51,15 +72,22 @@ class CustomerController extends Controller
             return response()->success('success');
         }
     }
-
-    public function deleteCustomer($id){
+    /**
+     * @param App\Http\requests\customer\deleteRequest $request
+     * @uses App\Models\Customer
+     */
+    public function deleteCustomer(deleteRequest $request,$id){
         $customer = Customer::find($id);
         if($customer->delete()){
             return response()->success('success');
         }
+        
     }
-
-    public function getCount(Request $request)
+    /**
+     * @param App\Http\requests\customer\viewRequest $request
+     * @uses App\Models\Customer
+     */
+    public function getCount(viewRequest $request)
     {
         $count = Customer::count();
         return response()->success($count);

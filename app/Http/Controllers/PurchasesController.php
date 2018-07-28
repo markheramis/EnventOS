@@ -9,12 +9,22 @@ use App\Http\Requests;
 use App\Models\Purchases;
 use App\Models\PurchaseItems;
 use App\Models\Inventory;
+
+use App\Http\Requests\purchase\createRequest;
+use App\Http\Requests\purchase\deleteRequest;
+use App\Http\Requests\purchase\updateRequest;
+use App\Http\Requests\purchase\viewRequest;
+
 /*
  * @todo must add a safe delete option
  */
 class PurchasesController extends Controller
 {
-    public function getIndex()
+    /**
+     * @param App\Http\Requests\purchase\viewRequest $reqiest
+     * @uses App\Models\Purchases
+     */
+    public function getIndex(viewRequest $request)
     {
         $purchases = Purchases::with([
             'user' => function($query){
@@ -27,8 +37,13 @@ class PurchasesController extends Controller
         ->get();
         return response()->success(compact('purchases'));
     }
-
-    public function getPurchase($id)
+    /**
+     * @param App\Http\Requests\purchase\viewRequest $reqiest
+     * @param int $id
+     * @uses App\Models\Purchases
+     * @uses str_pad
+     */
+    public function getPurchase(viewRequest $request, $id)
     {
         $purchase = Purchases::with([
             'user' => function($query){
@@ -63,8 +78,11 @@ class PurchasesController extends Controller
         $purchase->pur = str_pad($purchase->id, 8, "0", STR_PAD_LEFT);
         return response()->success($purchase);
     }
-
-    public function putPurchase(Request $request)
+    /**
+     * @param App\Http\Requests\purchase\updateRequest $reqiest
+     * @uses App\Models\Purchases
+     */
+    public function putPurchase(updateRequest $request)
     {
         $data = $request->input('data');
         $purchase = Purchases::find($data['id']);
@@ -76,8 +94,13 @@ class PurchasesController extends Controller
             return response()->success('success');
         }
     }
-
-    public function postPurchase(Request $request)
+    /**
+     * @param App\Http\Requests\purchase\createRequest $reqiest
+     * @uses App\Models\Purchases
+     * @uses App\Models\PurchaseItems
+     * @uses App\Models\Inventory
+     */
+    public function postPurchase(createRequest $request)
     {
         $purchase = new Purchases;
         $purchase->user_id = Auth::user()->id;
@@ -108,8 +131,13 @@ class PurchasesController extends Controller
             return response()->success('successs');
         }
     }
-
-    public function deletePurchase($id)
+    /**
+     * @param App\Http\Requests\purchase\deleteRequest $reqiest
+     * @uses App\Models\Purchases
+     * @uses App\Models\PurchaseItems
+     * @uses App\Models\Inventory
+     */
+    public function deletePurchase(deleteRequest $request, $id)
     {
         $purchase = Purchases::find($id);
         $purchaseItems = PurchaseItems::where('purchase_id',$purchase->id);
@@ -118,8 +146,11 @@ class PurchasesController extends Controller
         $purchaseItems->delete();
         $purchase->delete();
     }
-
-    public function getCount(Request $request)
+    /**
+     * @param App\Http\Requests\purchase\viewRequest $reqiest
+     * @uses App\Models\Purchases
+     */
+    public function getCount(viewRequest $request)
     {
         $user_id = ($request->query('user_id')) ? $request->query('user_id') : false;
         $supplier_id = ($request->query('supplier_id')) ? $request->query('supplier_id') : false;
