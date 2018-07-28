@@ -230,6 +230,16 @@ class RolesAndPermissionsSeeder extends Seeder {
         $this->roles['admin.super']->attachPermission($this->permissions['permission']['update']);
         $this->roles['admin.super']->attachPermission($this->permissions['permission']['delete']);
         $this->roles['admin.super']->attachPermission($this->permissions['permission']['view']);
+
+        $this->roles['admin.super']->attachPermission($this->permissions['customer']['create']);
+        $this->roles['admin.super']->attachPermission($this->permissions['customer']['update']);
+        $this->roles['admin.super']->attachPermission($this->permissions['customer']['delete']);
+        $this->roles['admin.super']->attachPermission($this->permissions['customer']['view']);
+
+        $this->roles['admin.super']->attachPermission($this->permissions['supplier']['create']);
+        $this->roles['admin.super']->attachPermission($this->permissions['supplier']['update']);
+        $this->roles['admin.super']->attachPermission($this->permissions['supplier']['delete']);
+        $this->roles['admin.super']->attachPermission($this->permissions['supplier']['view']);
     }
 
     private function attachRolesToUsers() {
