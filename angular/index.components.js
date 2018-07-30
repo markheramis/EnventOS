@@ -8,10 +8,10 @@ import {OrdersCreateComponent} from './app/components/orders-create/orders-creat
 import {OrdersEditComponent} from './app/components/orders-edit/orders-edit.component';
 import {OrdersListComponent} from './app/components/orders-list/orders-list.component';
 import {OrderInvoiceComponent} from './app/components/order-invoice/order-invoice.component';
-// Items
-import {ItemEditComponent} from './app/components/item-edit/item-edit.component';
-import {ItemAddComponent} from './app/components/item-add/item-add.component';
-import {ItemListComponent} from './app/components/item-list/item-list.component';
+// Products
+import {ProductEditComponent} from './app/components/product-edit/product-edit.component';
+import {ProductAddComponent} from './app/components/product-add/product-add.component';
+import {ProductListComponent} from './app/components/product-list/product-list.component';
 // Supplier
 import {SupplierEditComponent} from './app/components/supplier-edit/supplier-edit.component';
 import {SupplierAddComponent} from './app/components/supplier-add/supplier-add.component';
@@ -56,10 +56,10 @@ angular.module('app.components')
 .component('ordersEdit', OrdersEditComponent)
 .component('ordersList', OrdersListComponent)
 .component('orderInvoice', OrderInvoiceComponent)
-// Items
-.component('itemEdit', ItemEditComponent)
-.component('itemAdd', ItemAddComponent)
-.component('itemList', ItemListComponent)
+// Products
+.component('productEdit', ProductEditComponent)
+.component('productAdd', ProductAddComponent)
+.component('productList', ProductListComponent)
 // Supplier
 .component('supplierEdit', SupplierEditComponent)
 .component('supplierAdd', SupplierAddComponent)

@@ -75,18 +75,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="item in vm.orderData.data.items">
+                                    <tr ng-repeat="product in vm.orderData.data.products">
                                         <td>
-                                            {{item.item_name}}
+                                            {{product.product_name}}
                                         </td>
                                         <td>
-                                            {{item.quantity}}
+                                            {{product.quantity}}
                                         </td>
                                         <td>
-                                            {{item.selling_price}}
+                                            {{product.selling_price}}
                                         </td>
                                         <td>
-                                            {{item.total_selling}}
+                                            {{product.total_selling}}
                                         </td>
                                     </tr>
                                 </tbody>

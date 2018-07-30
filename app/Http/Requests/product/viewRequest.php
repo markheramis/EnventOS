@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\item;
+namespace App\Http\Requests\product;
 
 use App\Http\Requests\Request;
 
@@ -13,6 +13,6 @@ class viewRequest extends Request
      */
     public function authorize()
     {
-        return $this->user->can('view.item');
+        return $this->user->can('view.product');
     }
 }

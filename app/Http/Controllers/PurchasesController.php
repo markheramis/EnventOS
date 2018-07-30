@@ -64,10 +64,10 @@ class PurchasesController extends Controller
                     'company_name'
                 );
             },
-            'items' => function($query){
+            'products' => function($query){
                 $query
-                ->join('items','purchase_items.item_id','=','items.id')
-                ->select('purchase_items.*','items.item_name as name');
+                ->join('products','purchase_products.product_id','=','products.id')
+                ->select('purchase_products.*','products.product_name as name');
             }
         ])
         ->find($id);
@@ -111,19 +111,19 @@ class PurchasesController extends Controller
 
         if($purchase->save()){
 
-            foreach($request->input('purchaseItems') as $item){
+            foreach($request->input('purchaseItems') as $product){
                 $purchaseItem = new PurchaseItems;
                 $purchaseItem->purchase_id = $purchase->id;
-                $purchaseItem->item_id = $item['id'];
-                $purchaseItem->cost_price = $item['cost_price'];
-                $purchaseItem->quantity = $item['quantity'];
-                $purchaseItem->total_cost = $item['total_cost_price'];
+                $purchaseItem->product_id = $product['id'];
+                $purchaseItem->cost_price = $product['cost_price'];
+                $purchaseItem->quantity = $product['quantity'];
+                $purchaseItem->total_cost = $product['total_cost_price'];
                 $purchaseItem->save();
 
                 $inventory = new Inventory;
-                $inventory->item_id = $item['id'];
+                $inventory->product_id = $product['id'];
                 $inventory->user_id = Auth::user()->id;
-                $inventory->in_out_qty = $item['quantity'];
+                $inventory->in_out_qty = $product['quantity'];
                 $inventory->remarks = 'Added from purchase transaction (#' . $purchase->id . ')';
                 $inventory->purchase_id = $purchase->id;
                 $inventory->save();

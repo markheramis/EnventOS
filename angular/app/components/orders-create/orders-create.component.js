@@ -8,7 +8,7 @@ class OrdersCreateController{
             this.alerts.push($stateParams.alerts)
         }
 
-        this.items = []
+        this.products = []
         this.orderItems = []
         this.payment_amount = 0.00
         this.cost_price = 0.00
@@ -16,11 +16,11 @@ class OrdersCreateController{
         this.amount_due = 0.00
 
 
-        let Items = this.API.service('items')
+        let Items = this.API.service('products')
         Items.getList({
           with_stock_only: true
         }).then((response) => {
-            this.items = response.plain()
+            this.products = response.plain()
         })
 
         let Customers = this.API.service('customers')
@@ -29,13 +29,13 @@ class OrdersCreateController{
         })
     }
 
-    addToorderItems(item){
-        let index = this.searchorderItems(item.id)
+    addToorderItems(product){
+        let index = this.searchorderItems(product.id)
         if(index == -1){
-            item.quantity = 1
-            item.total_cost_price = (item.quantity * Number.parseFloat(item.cost_price)).toFixed(2)
-            item.total_selling_price = (item.quantity * Number.parseFloat(item.selling_price)).toFixed(2)
-            this.orderItems.push(item)
+            product.quantity = 1
+            product.total_cost_price = (product.quantity * Number.parseFloat(product.cost_price)).toFixed(2)
+            product.total_selling_price = (product.quantity * Number.parseFloat(product.selling_price)).toFixed(2)
+            this.orderItems.push(product)
         }else{
             this.orderItems[index].quantity++
             this.orderItems[index].total_cost_price = (this.orderItems[index].quantity * Number.parseFloat(this.orderItems[index].cost_price)).toFixed(2)
@@ -79,8 +79,8 @@ class OrdersCreateController{
         if(index == -1){
             return true
         }else{
-            let item = this.orderItems[index]
-            if(item.on_hand > item.quantity){
+            let product = this.orderItems[index]
+            if(product.on_hand > product.quantity){
                 return true
             }
         }
@@ -88,9 +88,9 @@ class OrdersCreateController{
     updateTotal(){
         let cost_price = 0
         let selling_price = 0
-        this.orderItems.forEach((item) => {
-            cost_price = cost_price + Number.parseFloat(item.total_cost_price)
-            selling_price = selling_price + Number.parseFloat(item.total_selling_price)
+        this.orderItems.forEach((product) => {
+            cost_price = cost_price + Number.parseFloat(product.total_cost_price)
+            selling_price = selling_price + Number.parseFloat(product.total_selling_price)
         })
         this.cost_price = cost_price.toFixed(2)
         this.selling_price = selling_price.toFixed(2)

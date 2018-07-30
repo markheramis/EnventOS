@@ -8,9 +8,9 @@ class Inventory extends Model
 {
     protected $table = 'inventories';
 
-    public function item()
+    public function product()
     {
-        return $this->belongsTo('App\Models\Item');
+        return $this->belongsTo('App\Models\Product');
     }
 
     public function user()

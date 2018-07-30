@@ -75,7 +75,7 @@ class DashboardController {
         API.service('customers').one('count').get().then((response) => {
             this.customer_count = response.plain().data
         })
-        API.service('items').one('count').get().then((response) => {
+        API.service('products').one('count').get().then((response) => {
             this.item_count = response.plain().data
         })
         API.service('purchases').one('count').get().then((response) => {

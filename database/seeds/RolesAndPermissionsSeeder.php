@@ -167,7 +167,7 @@ class RolesAndPermissionsSeeder extends Seeder {
         ]);
         $this->permissions['product']['view'] = Permission::create([
             'name' => 'View products',
-            'slug' => 'view.products',
+            'slug' => 'view.product',
             'description' => 'Can view products',
         ]);
         ## SALES PERMISSIONS
@@ -240,6 +240,21 @@ class RolesAndPermissionsSeeder extends Seeder {
         $this->roles['admin.super']->attachPermission($this->permissions['supplier']['update']);
         $this->roles['admin.super']->attachPermission($this->permissions['supplier']['delete']);
         $this->roles['admin.super']->attachPermission($this->permissions['supplier']['view']);
+
+        $this->roles['admin.super']->attachPermission($this->permissions['product']['create']);
+        $this->roles['admin.super']->attachPermission($this->permissions['product']['update']);
+        $this->roles['admin.super']->attachPermission($this->permissions['product']['delete']);
+        $this->roles['admin.super']->attachPermission($this->permissions['product']['view']);
+
+        $this->roles['admin.super']->attachPermission($this->permissions['order']['create']);
+        $this->roles['admin.super']->attachPermission($this->permissions['order']['update']);
+        $this->roles['admin.super']->attachPermission($this->permissions['order']['delete']);
+        $this->roles['admin.super']->attachPermission($this->permissions['order']['view']);
+
+        $this->roles['admin.super']->attachPermission($this->permissions['purchase']['create']);
+        $this->roles['admin.super']->attachPermission($this->permissions['purchase']['update']);
+        $this->roles['admin.super']->attachPermission($this->permissions['purchase']['delete']);
+        $this->roles['admin.super']->attachPermission($this->permissions['purchase']['view']);
     }
 
     private function attachRolesToUsers() {

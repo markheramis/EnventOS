@@ -1,4 +1,4 @@
-class ItemListController{
+class ProductListController{
     constructor($scope, $state, $compile, DTOptionsBuilder, DTColumnBuilder, API, AclService){
         'ngInject';
         this.API = API
@@ -6,12 +6,12 @@ class ItemListController{
         this.AclService = AclService
 
 
-        let Items = this.API.service('items')
-        Items.getList({
+        let Products = this.API.service('products')
+        Products.getList({
             type: 1
         }).then((response) => {
             let dataSet = response.plain()
-
+            console.log('test');
             this.dtOptions = DTOptionsBuilder
             .newOptions()
             .withOption('data',dataSet)
@@ -20,8 +20,8 @@ class ItemListController{
             .withBootstrap()
             this.dtColumns = [
                 DTColumnBuilder.newColumn('id').withTitle('ID'),
-                DTColumnBuilder.newColumn('item_code').withTitle('Code'),
-                DTColumnBuilder.newColumn('item_name').withTitle('Name'),
+                DTColumnBuilder.newColumn('product_code').withTitle('Code'),
+                DTColumnBuilder.newColumn('product_name').withTitle('Name'),
                 DTColumnBuilder.newColumn('cost_price').withTitle('Cost Price'),
                 DTColumnBuilder.newColumn('selling_price').withTitle('Selling Price'),
                 DTColumnBuilder.newColumn('on_hand').withTitle('On Hand'),
@@ -38,7 +38,7 @@ class ItemListController{
         let actionsHtml = (data) => {
             var buttons = ``
             buttons += `
-            <a class="btn btn-xs btn-warning" ui-sref="app.item-edit({itemId: ${data.id}})">
+            <a class="btn btn-xs btn-warning" ui-sref="app.product-edit({productId: ${data.id}})">
                 <i class="fa fa-edit"></i>
             </a>
             &nbsp
@@ -52,7 +52,7 @@ class ItemListController{
         }
     }
 
-    delete(itemId){
+    delete(productId){
         let API = this.API
         let $state = this.$state
         swal({
@@ -66,7 +66,7 @@ class ItemListController{
             showLoaderOnConfirm: true,
             html: false
         }, function () {
-            API.one('items').one('item', itemId).remove().then(() => {
+            API.one('products').one('product', productId).remove().then(() => {
                 swal({
                     title: 'Deleted!',
                     text: 'User Permission has been deleted.',
@@ -84,9 +84,9 @@ class ItemListController{
     }
 }
 
-export const ItemListComponent = {
-    templateUrl: './views/app/components/item-list/item-list.component.html',
-    controller: ItemListController,
+export const ProductListComponent = {
+    templateUrl: './views/app/components/product-list/product-list.component.html',
+    controller: ProductListController,
     controllerAs: 'vm',
     bindings: {}
 }

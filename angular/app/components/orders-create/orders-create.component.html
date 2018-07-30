@@ -23,8 +23,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="itemSearch" class="control-label">Item Search</label>
-                                        <input type="text" class="form-control" ng-model="vm.itemSearch" name="itemSearch" placeholder="Search Items Here...">
+                                        <label for="productSearch" class="control-label">Item Search</label>
+                                        <input type="text" class="form-control" ng-model="vm.productSearch" name="productSearch" placeholder="Search Items Here...">
                                     </div>
                                 </div>
                             </div>
@@ -40,13 +40,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="item in vm.items | filter: vm.itemSearch | limitTo:10">
-                                                <td>{{ item.id }}</td>
+                                            <tr ng-repeat="product in vm.products | filter: vm.productSearch | limitTo:10">
+                                                <td>{{ product.id }}</td>
                                                 <td>
-                                                    {{ item.item_name }}
+                                                    {{ product.product_name }}
                                                 </td>
                                                 <td>
-                                                    {{ item.on_hand }}
+                                                    {{ product.on_hand }}
                                                 </td>
                                                 <td>
                                                     <div class="btn-group">
@@ -54,12 +54,12 @@
                                                         <button
                                                             type="button"
                                                             class="btn btn-xs"
-                                                            ng-click="vm.addToorderItems(item)"
+                                                            ng-click="vm.addToorderItems(product)"
                                                             ng-class="{
-                                                                'btn-danger': !vm.canAddQuantity(item.id) || !item.on_hand,
-                                                                'btn-primary': item.on_hand
+                                                                'btn-danger': !vm.canAddQuantity(product.id) || !product.on_hand,
+                                                                'btn-primary': product.on_hand
                                                             }"
-                                                            ng-disabled="!vm.canAddQuantity(item.id) || !item.on_hand">
+                                                            ng-disabled="!vm.canAddQuantity(product.id) || !product.on_hand">
                                                             <i class="fa fa-plus"></i>
                                                         </button>
                                                     </div>
@@ -112,22 +112,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="item in vm.orderItems">
+                                        <tr ng-repeat="product in vm.orderItems">
                                             <td>
-                                                {{item.item_name}}
+                                                {{product.product_name}}
                                             </td>
                                             <td>
-                                                <input class="form-control text-center" type="number" ng-change="vm.updateOnChange(item.id)" ng-model="item.quantity" max="{{item.quantity}}">
+                                                <input class="form-control text-center" type="number" ng-change="vm.updateOnChange(product.id)" ng-model="product.quantity" max="{{product.quantity}}">
                                             </td>
                                             <td>
-                                                {{item.selling_price}}
+                                                {{product.selling_price}}
                                             </td>
                                             <td>
-                                                {{item.total_selling_price}}
+                                                {{product.total_selling_price}}
                                             </td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-xs btn-default" ng-click="vm.deleteFromCart(item.id)">
+                                                    <button type="button" class="btn btn-xs btn-default" ng-click="vm.deleteFromCart(product.id)">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </div>

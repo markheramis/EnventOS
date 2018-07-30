@@ -15,7 +15,7 @@ class CreateInventoriesTable extends Migration
         Schema::create('inventories', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('item_id')->unsigned();
+			$table->integer('product_id')->unsigned();
 			$table->integer('user_id')->unsigned();
             $table->integer('order_id')->unsigned()->nullable();
             $table->integer('purchase_id')->unsigned()->nullable();
@@ -23,7 +23,7 @@ class CreateInventoriesTable extends Migration
 			$table->string('remarks', 255)->default('N/A')->nullable();
 			$table->timestamps();
 
-            $table->foreign('item_id')->references('id')->on('items')->onDelete('restrict');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
 		});
     }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateItemsTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('items', function(Blueprint $table)
+        Schema::create('products', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('item_code',90); // upc_ean_isbn
-			$table->string('item_name',90);
+			$table->string('product_code',90); // upc_ean_isbn
+			$table->string('product_name',90);
 			$table->string('size',20);
 			$table->text('description');
 			$table->string('avatar', 255)->default('no-foto.png');
@@ -33,6 +33,6 @@ class CreateItemsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('items');
+        Schema::drop('products');
     }
 }

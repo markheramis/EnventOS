@@ -7,14 +7,14 @@ class PurchaseAddController{
         if($stateParams.alerts){
             this.alerts.push($stateParams.alerts)
         }
-        this.items = []
+        this.products = []
         this.purchaseItems = []
         this.cost_price = 0.00
         this.selling_price = 0.00
 
-        let Items = this.API.service('items')
-        Items.getList({type: 1}).then((response) => {
-            this.items = response.plain()
+        let Products = this.API.service('products')
+        Products.getList({type: 1}).then((response) => {
+            this.products = response.plain()
         })
 
 
@@ -24,12 +24,12 @@ class PurchaseAddController{
         })
     }
 
-    addToPurchaseItems(item){
-        let index = this.searchPurchaseItems(item.id)
+    addToPurchaseProducts(product){
+        let index = this.searchPurchaseProducts(product.id)
         if(index == -1){
-            item.quantity = 1
-            item.total_cost_price = (item.quantity * Number.parseFloat(item.cost_price)).toFixed(2)
-            this.purchaseItems.push(item)
+            product.quantity = 1
+            product.total_cost_price = (product.quantity * Number.parseFloat(product.cost_price)).toFixed(2)
+            this.purchaseItems.push(product)
         }else{
             let current = this.purchaseItems[index]
             current.quantity++
@@ -38,7 +38,7 @@ class PurchaseAddController{
         this.updateTotal()
     }
 
-    searchPurchaseItems(searchId){
+    searchPurchaseProducts(searchId){
         let result = -1
         /*
          * @problem: for some reason if the search is found the function still continues the loop
@@ -51,24 +51,24 @@ class PurchaseAddController{
         return result
     }
     updateOnChange(id){
-        let index = this.searchPurchaseItems(id)
-        let item = this.purchaseItems[index]
-        if(item.quantity <= 0){
-            this.deleteRecievingItems(item.id)
+        let index = this.searchPurchaseProducts(id)
+        let product = this.purchaseItems[index]
+        if(product.quantity <= 0){
+            this.deleteRecievingProducts(product.id)
         }else{
-            item.total_cost_price = item.quantity * Number.parseFloat(item.cost_price)
+            product.total_cost_price = product.quantity * Number.parseFloat(product.cost_price)
         }
         this.updateTotal()
     }
-    deleteRecievingItems(id){
-        let index = this.searchPurchaseItems(id)
+    deleteRecievingProducts(id){
+        let index = this.searchPurchaseProducts(id)
         this.purchaseItems.splice(index,1)
         this.updateTotal()
     }
     updateTotal(){
         let cost_price = 0
-        this.purchaseItems.forEach((item) => {
-            cost_price += Number.parseFloat(item.total_cost_price)
+        this.purchaseItems.forEach((product) => {
+            cost_price += Number.parseFloat(product.total_cost_price)
         })
         this.cost_price = cost_price.toFixed(2)
     }

@@ -132,38 +132,38 @@
             orderId: null
         }
     })
-    .state('app.item-list',{
-        url: '/item/list',
+    .state('app.product-list',{
+        url: '/product/list',
         data: {auth: true},
         views: {
             'main@app':{
-                template: '<item-list></item-list>'
+                template: '<product-list></product-list>'
             }
         }
     })
-    .state('app.item-add',{
-        url: '/item/add',
+    .state('app.product-add',{
+        url: '/product/add',
         data: {auth:  true},
         views: {
             'main@app': {
-                template: '<item-add></item-add>'
+                template: '<product-add></product-add>'
             }
         },
         params: {
             alerts: null
         }
     })
-    .state('app.item-edit',{
-        url: '/item/edit/:itemId',
+    .state('app.product-edit',{
+        url: '/product/edit/:productId',
         data: {auth: true},
         views: {
             'main@app':{
-                template: '<item-edit></item-edit>'
+                template: '<product-edit></product-edit>'
             }
         },
         params: {
             alerts: null,
-            itemId: null
+            productId: null
         }
     })
     .state('app.supplier-list',{

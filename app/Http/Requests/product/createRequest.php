@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\item;
+namespace App\Http\Requests\product;
 
 use App\Http\Requests\Request;
 
@@ -13,7 +13,7 @@ class createRequest extends Request
      */
     public function authorize()
     {
-        return $this->user->can('create.item');
+        return $this->user->can('create.product');
     }
 
     /**

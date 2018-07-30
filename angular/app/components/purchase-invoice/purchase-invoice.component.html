@@ -43,11 +43,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="item in vm.purchaseData.data.items">
-                                                <td class="desc">{{item.name}}</td>
-                                                <td class="unit">{{item.cost_price}}</td>
-                                                <td class="qty">{{item.quantity}}</td>
-                                                <td class="total">{{item.total_cost}}</td>
+                                            <tr ng-repeat="product in vm.purchaseData.data.products">
+                                                <td class="desc">{{product.name}}</td>
+                                                <td class="unit">{{product.cost_price}}</td>
+                                                <td class="qty">{{product.quantity}}</td>
+                                                <td class="total">{{product.total_cost}}</td>
                                             </tr>
                                         </tbody>
                                         <tfoot>

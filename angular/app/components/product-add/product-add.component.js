@@ -1,4 +1,4 @@
-class ItemAddController{
+class ProductAddController{
     constructor(API, $state, $stateParams){
         'ngInject';
         this.$state = $state
@@ -12,18 +12,18 @@ class ItemAddController{
 
     save(isValid){
         if(isValid){
-            let items = this.API.service('item',this.API.all('items'))
+            let products = this.API.service('product',this.API.all('products'))
             let $state = this.$state
-            items.post({
-                item_code: this.item_code,
-                item_name: this.item_name,
+            products.post({
+                product_code: this.product_code,
+                product_name: this.product_name,
                 size: this.size,
                 description: this.description,
                 cost_price:  this.cost_price,
                 selling_price: this.selling_price,
                 quantity: this.quantity
             }).then(()=> {
-                let alert = {type: 'success',title: 'Success!',msg: 'Item has been added.'}
+                let alert = {type: 'success',title: 'Success!',msg: 'Product has been added.'}
                 $state.go($state.current, {alerts: alert})
             },(response) => {
                 let alert = {type: 'error', title: 'Error!', msg: response.data.message}
@@ -36,9 +36,9 @@ class ItemAddController{
     }
 }
 
-export const ItemAddComponent = {
-    templateUrl: './views/app/components/item-add/item-add.component.html',
-    controller: ItemAddController,
+export const ProductAddComponent = {
+    templateUrl: './views/app/components/product-add/product-add.component.html',
+    controller: ProductAddController,
     controllerAs: 'vm',
     bindings: {}
 }

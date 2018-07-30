@@ -1,4 +1,4 @@
-class ItemEditController{
+class ProductEditController{
     constructor($state, $stateParams, API){
         'ngInject';
         this.$state = $state
@@ -9,10 +9,10 @@ class ItemEditController{
             this.alerts.push($stateParams.alerts)
         }
 
-        let itemId = $stateParams.itemId
-        let items = API.service('item',API.all('items'))
-        items.one(itemId).get().then((response) => {
-            this.itemData = API.copy(response)
+        let productId = $stateParams.productId
+        let products = API.service('product',API.all('products'))
+        products.one(productId).get().then((response) => {
+            this.productData = API.copy(response)
         })
 
     }
@@ -20,8 +20,8 @@ class ItemEditController{
     save(isValid){
         if(isValid){
             let $state = this.$state
-            this.itemData.put().then(() => {
-                let alert = {type: 'success', title: 'Success!', msg: 'Item has been updated.'}
+            this.productData.put().then(() => {
+                let alert = {type: 'success', title: 'Success!', msg: 'Product has been updated.'}
                 $state.go($state.current,{alerts:alert})
             },(response) => {
                 let alert = {type: 'error', title: 'Error!', msg: response.data.message}
@@ -36,9 +36,9 @@ class ItemEditController{
     }
 }
 
-export const ItemEditComponent = {
-    templateUrl: './views/app/components/item-edit/item-edit.component.html',
-    controller: ItemEditController,
+export const ProductEditComponent = {
+    templateUrl: './views/app/components/product-edit/product-edit.component.html',
+    controller: ProductEditController,
     controllerAs: 'vm',
     bindings: {}
 }

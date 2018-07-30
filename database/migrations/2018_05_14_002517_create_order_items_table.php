@@ -17,7 +17,7 @@ class CreateOrderItemsTable extends Migration
 			$table->increments('id');
 			$table->integer('order_id')->unsigned();
 
-			$table->integer('item_id')->unsigned();
+			$table->integer('product_id')->unsigned();
 
 			$table->decimal('cost_price',15, 2);
 			$table->decimal('selling_price',15, 2);
@@ -27,7 +27,7 @@ class CreateOrderItemsTable extends Migration
 			$table->timestamps();
 
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('restrict');
-            $table->foreign('item_id')->references('id')->on('items')->onDelete('restrict');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
 		});
     }
 

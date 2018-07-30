@@ -31,7 +31,7 @@ class OrdersController extends Controller{
                 $query->select('id','first_name', 'last_name');
             }
         ])
-        ->withCount('items')
+        ->withCount('products')
         ->get();
         return response()->success(compact('orders'));
     }
@@ -60,10 +60,10 @@ class OrdersController extends Controller{
                     'company_name'
                 );
             },
-            'items' => function($query){
+            'products' => function($query){
                 $query
-                ->join('items','order_items.item_id','=','items.id')
-                ->select('order_items.*','items.item_name as name');
+                ->join('products','order_products.product_id','=','products.id')
+                ->select('order_products.*','products.product_name as name');
             }
         ])
         ->find($id);
@@ -110,20 +110,20 @@ class OrdersController extends Controller{
         $orders->status = $request->input('status');
         $orders->comments = $request->input('comments');
         if($orders->save()){
-            foreach($request->input('orderItems') as $item){
+            foreach($request->input('orderItems') as $product){
                 $orderItems = new OrderItems;
                 $orderItems->order_id = $orders->id;
-                $orderItems->item_id = $item['id'];
-                $orderItems->cost_price = $item['cost_price'];
-                $orderItems->selling_price = $item['selling_price'];
-                $orderItems->quantity = $item['quantity'];
-                $orderItems->total_cost = $item['total_cost_price'];
-                $orderItems->total_selling = $item['total_selling_price'];
+                $orderItems->product_id = $product['id'];
+                $orderItems->cost_price = $product['cost_price'];
+                $orderItems->selling_price = $product['selling_price'];
+                $orderItems->quantity = $product['quantity'];
+                $orderItems->total_cost = $product['total_cost_price'];
+                $orderItems->total_selling = $product['total_selling_price'];
                 $orderItems->save();
                 $inventory = new Inventory;
-                $inventory->item_id = $item['id'];
+                $inventory->product_id = $product['id'];
                 $inventory->user_id = Auth::user()->id;
-                $inventory->in_out_qty = (0 - $item['quantity']);
+                $inventory->in_out_qty = (0 - $product['quantity']);
                 $inventory->remarks = 'Deducted from order transaction';
                 $inventory->order_id = $orders->id;
                 $inventory->save();

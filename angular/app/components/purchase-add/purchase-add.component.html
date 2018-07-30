@@ -23,8 +23,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="itemSearch" class="control-label">Item Search</label>
-                                        <input type="text" class="form-control" ng-model="vm.itemSearch" name="itemSearch" placeholder="Search Items Here...">
+                                        <label for="productSearch" class="control-label">Product Search</label>
+                                        <input type="text" class="form-control" ng-model="vm.productSearch" name="productSearch" placeholder="Search Products Here...">
                                     </div>
                                 </div>
                             </div>
@@ -41,14 +41,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="item in vm.items | filter: vm.itemSearch | limitTo:10">
-                                                <td>{{ item.id }}</td>
-                                                <td>{{ item.item_code }}</td>
+                                            <tr ng-repeat="product in vm.products | filter: vm.productSearch | limitTo:10">
+                                                <td>{{ product.id }}</td>
+                                                <td>{{ product.product_code }}</td>
                                                 <td>
-                                                    {{ item.item_name }}
+                                                    {{ product.product_name }}
                                                 </td>
                                                 <td>
-                                                    {{ item.on_hand }}
+                                                    {{ product.on_hand }}
                                                 </td>
                                                 <td>
                                                     <div class="btn-group">
@@ -56,7 +56,7 @@
                                                         <button
                                                             type="button"
                                                             class="btn btn-xs btn-primary"
-                                                            ng-click="vm.addToPurchaseItems(item)">
+                                                            ng-click="vm.addToPurchaseProducts(product)">
                                                             <i class="fa fa-plus"></i>
                                                         </button>
                                                     </div>
@@ -108,7 +108,7 @@
                                 <table class="table table-striped table-bordered" ng-show="vm.purchaseItems.length">
                                     <thead>
                                         <tr>
-                                            <td>Item</td>
+                                            <td>Product</td>
                                             <td width="15%">quantity</td>
                                             <td>Cost Price</td>
                                             <td>Total Cost</td>
@@ -116,22 +116,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="item in vm.purchaseItems">
+                                        <tr ng-repeat="product in vm.purchaseItems">
                                             <td>
-                                                {{item.item_name}}
+                                                {{product.product_name}}
                                             </td>
                                             <td>
-                                                <input class="form-control text-center" ng-model="item.quantity" ng-change="vm.updateOnChange(item.id)" type="number" value="{{item.quantity}}">
+                                                <input class="form-control text-center" ng-model="product.quantity" ng-change="vm.updateOnChange(product.id)" type="number" value="{{product.quantity}}">
                                             </td>
                                             <td>
-                                                {{item.cost_price}}
+                                                {{product.cost_price}}
                                             </td>
                                             <td>
-                                                {{item.total_cost_price}}
+                                                {{product.total_cost_price}}
                                             </td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-xs btn-default" ng-click="vm.deleteFromCart(item.id)">
+                                                    <button type="button" class="btn btn-xs btn-default" ng-click="vm.deleteFromCart(product.id)">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </div>
