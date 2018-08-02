@@ -24,15 +24,15 @@ class createRequest extends Request
     public function rules()
     {
         return [
-            'first_name' => 'required|alpha',
-            'last_name' => 'required|alpha',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'email' => 'required|email',
             'phone' => 'required|integer',
             'address' => 'required',
             'state' => 'required',
-            'city' => 'required|alpha',
+            'city' => 'required',
             'zip' => 'required|integer',
-            'company_name' => 'required|alpha_num'
+            'company_name' => 'required'
         ];
     }
 }

@@ -24,7 +24,13 @@ class createRequest extends Request
     public function rules()
     {
         return [
-            //
+            'product_code' => 'required',
+            'product_name' => 'required',
+            'size' => 'required',
+            'description' => 'required',
+            'cost_price' => 'required',
+            'selling_price' => 'required',
+            'quantity' => 'required',
         ];
     }
 }

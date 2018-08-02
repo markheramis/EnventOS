@@ -24,16 +24,16 @@ class updateRequest extends Request
     public function rules()
     {
         return [
-            'id' => 'required|integer',
-            'first_name' => 'required|alpha',
-            'last_name' => 'required|alpha',
-            'email' => 'required|email',
-            'phone' => 'required|integer',
-            'address' => 'required',
-            'state' => 'required',
-            'city' => 'required|alpha',
-            'zip' => 'required|integer',
-            'company_name' => 'required|alpha_num'
+            'data.id' => 'required|integer',
+            'data.first_name' => 'required',
+            'data.last_name' => 'required',
+            'data.email' => 'required|email',
+            'data.phone' => 'required|integer',
+            'data.address' => 'required',
+            'data.state' => 'required',
+            'data.city' => 'required',
+            'data.zip' => 'required|integer',
+            'data.company_name' => 'required'
         ];
     }
 }
