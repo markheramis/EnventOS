@@ -24,7 +24,10 @@ class updateRequest extends Request
     public function rules()
     {
         return [
-            //
+            'id' => 'required',
+            'customer_id' => 'required',
+            'payment_type' => 'required',
+            'status' => 'required',
         ];
     }
 }

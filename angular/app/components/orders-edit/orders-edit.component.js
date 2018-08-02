@@ -8,7 +8,7 @@ class OrdersEditController{
 
         if($stateParams.alerts) this.alerts.push($stateParams.alerts)
 
-        let Items = this.API.service('items')
+        let Items = this.API.service('products')
         Items.getList().then((response) => {
             this.items = response.plain()
         })

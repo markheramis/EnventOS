@@ -64,10 +64,10 @@ class PurchasesController extends Controller
                     'company_name'
                 );
             },
-            'products' => function($query){
+            'items' => function($query){
                 $query
-                ->join('products','purchase_products.product_id','=','products.id')
-                ->select('purchase_products.*','products.product_name as name');
+                ->join('products','purchase_items.product_id','=','products.id')
+                ->select('purchase_items.*','products.product_name as name');
             }
         ])
         ->find($id);

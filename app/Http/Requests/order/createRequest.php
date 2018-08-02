@@ -13,7 +13,7 @@ class createRequest extends Request
      */
     public function authorize()
     {
-        return $this->user->can('view.order');
+        return $this->user->can('create.order');
     }
 
     /**

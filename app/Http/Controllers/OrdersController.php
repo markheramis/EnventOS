@@ -31,7 +31,7 @@ class OrdersController extends Controller{
                 $query->select('id','first_name', 'last_name');
             }
         ])
-        ->withCount('products')
+        ->withCount('items')
         ->get();
         return response()->success(compact('orders'));
     }
@@ -60,10 +60,10 @@ class OrdersController extends Controller{
                     'company_name'
                 );
             },
-            'products' => function($query){
+            'items' => function($query){
                 $query
-                ->join('products','order_products.product_id','=','products.id')
-                ->select('order_products.*','products.product_name as name');
+                ->join('products','order_items.product_id','=','products.id')
+                ->select('order_items.*','products.product_name as name');
             }
         ])
         ->find($id);
