@@ -24,7 +24,13 @@ class updateRequest extends Request
     public function rules()
     {
         return [
-            //
+            'id' => 'required|integer',
+            'product_code' => 'required',
+            'product_name' => 'required',
+            'size' => 'required',
+            'description' => 'required',
+            'cost_price' => 'required',
+            'selling_price' => 'required',
         ];
     }
 }
