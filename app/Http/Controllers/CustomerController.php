@@ -13,7 +13,7 @@ use App\Http\Requests\customerUpdateRequest;
 use App\Http\Requests\customer\createRequest;
 use App\Http\Requests\customer\deleteRequest;
 use App\Http\Requests\customer\updateRequest;
-use App\Http\requests\customer\viewRequest;
+use App\Http\Requests\customer\viewRequest;
 
 class CustomerController extends Controller
 {
