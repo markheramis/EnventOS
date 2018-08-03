@@ -61,6 +61,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Ledger
 - add Global settings
 - orders and purchases who's status are `cancelled` and `processing` should be ignored in inventory.
+- restructure codebase to adopt Porto SAP architecture.
 
 ### Bug
 - All forms when submitted twice with a different transaction, it doesn't refresh.
