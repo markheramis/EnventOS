@@ -47,7 +47,6 @@
     "gulp-util": "^3.0.3",
     "laravel-elixir": "^4.2.1",
     "laravel-elixir-artisan-serve": "^1.0.6",
-    "laravel-elixir-karma": "^0.2.2",
     "main-bower-files": "^2.1.0",
     "node-sass": "^4.9.2",
     "underscore": "^1.8.3",
