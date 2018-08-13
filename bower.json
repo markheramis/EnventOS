@@ -29,6 +29,7 @@
     "font-awesome": "fontawesome#^4.7.0"
   },
   "resolutions": {
-    "angular": "~1.5.x"
+    "angular": "~1.5.x",
+    "jquery": "^2.2.3"
   }
 }
